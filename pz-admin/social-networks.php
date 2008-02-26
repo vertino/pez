@@ -1,0 +1,42 @@
+<?php
+$social_networks = array(
+//	name => array( title, url-format )
+	'43things' => array('43Things', '#%s'),
+	'bebo' => array('Bebo', '#%s'),
+	'catster' => array('Catster', '#%s'),
+	'delicious' => array('del.icio.us', 'http://del.icio.us/%s/'),
+	'digg' => array('Digg', 'http://digg.com/users/%s/'),
+	'dodgeball' => array('Dodgeball', 'http://www.dodgeball.com/user?uid=%s'),
+	'dogster' => array('Dogster', '#%s'),
+	'dopplr' => array('Dopplr', 'http://www.dopplr.com/traveller/%s'),
+	'facebook' => array('Facebook', 'http://www.facebook.com/profile.php?id=%s'),
+	'flickr' => array('Flickr', 'http://flickr.com/photos/%s/'),
+	'goodreads' => array('GoodReads', '#%s'),
+	'hi5' => array('Hi5', '#%s'),
+	'jaiku' => array('Jaiku', '#%s'),
+	'lastfm' => array('Last.fm', 'http://www.last.fm/user/%s/'),
+	'linkedin' => array('LinkedIn', 'http://www.linkedin.com/in/%s'),
+	'lj' => array('LiveJournal', 'http://%s.livejournal.com/'),
+	'mog' => array('MOG', '#%s'),
+	'multiply' => array('Multiply', '#%s'),
+	'myspace' => array('MySpace', 'http://www.myspace.com/%s'),
+	'newsvine' => array('Newsvine', '#%s'),
+	'ning' => array('Ning', '#%s'),
+	'orkut' => array('Orkut', '#%s'),
+	'pandora' => array('Pandora', '#%s'),
+	'pownce' => array('Pownce', 'http://pownce.com/%s/'),
+	'reddit' => array('Reddit', '#%s'),
+	'sonicliving' => array('SonicLiving', '#%s'),
+	'stumbleupon' => array('StumbleUpon', '#%s'),
+	'tabblo' => array('Tabblo', '#%s'),
+	'tagworld' => array('TagWorld', '#%s'),
+	'technorati' => array('Technorati', 'http://technorati.com/people/technorati/%s'),
+	'tribe' => array('Tribe', '#%s'),
+	'twitter' => array('Twitter', 'http://twitter.com/%s'),
+	'upcoming' => array('Upcoming', 'http://upcoming.yahoo.com/user/%s'),
+	'vox' => array('Vox', '#%s'),
+	'youtube' => array('YouTube', 'http://www.youtube.com/user/%s'),
+	'zooomr' => array('Zooomr', '#%s')
+);
+ksort($social_networks);
+?>

@@ -1,10 +1,11 @@
 <?php
-define('ABSPATH', dirname(__FILE__).'/');
+define('ABSPATH', dirname(__FILE__));
 define('CHARSET', 'ISO-8859-1');
 define('MAX_ITEMS', 5); // Set the number of blog articles you want to appear here.
 define('DATE_FORMAT', 'M j Y');
 
-include_once(ABSPATH . 'pz-includes/functions.php');
+include_once(ABSPATH . '/pz-includes/functions.php');
+include_once(ABSPATH . '/pz-includes/classes.php');
 
 
 // Enter your full name here.
