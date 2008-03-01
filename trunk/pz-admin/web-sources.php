@@ -5,6 +5,7 @@ include_once(ABSPATH . '/pz-admin/social-networks.php');
 <html>
 	<head>
 		<title>Pez: Admin: Web Sources</title>
+		<style type="text/css">@import url(admin.css);</style>
 	</head>
 	<body>
 		<ul>
@@ -43,7 +44,7 @@ include_once(ABSPATH . '/pz-admin/social-networks.php');
 			<div>
 				<select name="network_id" id="id_network_id">
 				<?php foreach ($social_networks as $name => $site) : ?>
-					<option value="<?php echo $name; ?>"><?php echo $site[0]; ?></option>
+					<option class="<?php echo $name; ?>" value="<?php echo $name; ?>"><?php echo $site[0]; ?></option>
 				<?php endforeach; ?>
 				</select>
 			</div>
