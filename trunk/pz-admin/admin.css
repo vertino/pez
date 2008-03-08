@@ -1,0 +1,56 @@
+
+body {background-color:#efefef;color:#000;}
+a {color:#009;text-decoration:none;}
+a:hover {color:#909;text-decoration:underline;}
+
+#page {}
+#header {background-color:#d0d0d0;}
+#header h1 {}
+#header ul#menu {background-color:#c0c0c0;padding:3px 5px;}
+#header ul#menu li {display:inline;}
+
+.message-box span {display:block;background-color:#eee;border:solid 1px #ccc;text-align:center;}
+.message-box .success {color:#090;}
+.message-box .error {color:#900;}
+.message-box .info {color:#009;}
+
+#gravatar-options, #gravatar_image {display:none;}
+
+select#id_network_id option {background:transparent url(../pz-includes/images/favicons.gif) no-repeat;padding:4px 0 4px 25px;}
+select#id_network_id option.select {background:none;}
+select#id_network_id option.43things {background-position:0 0;}
+select#id_network_id option.bebo {background-position:0 -40px;}
+select#id_network_id option.catster {background-position:0 -80px;}
+select#id_network_id option.delicious {background-position:0 -120px !important;}
+select#id_network_id option.digg {background-position:0 -160px !important;}
+select#id_network_id option.dodgeball {background-position:0 -200px;}
+select#id_network_id option.dogster {background-position:0 -240px;}
+select#id_network_id option.dopplr {background-position:0 -280px;}
+select#id_network_id option.facebook {background-position:0 -320px !important;}
+select#id_network_id option.flickr {background-position:0 -360px !important;}
+select#id_network_id option.goodreads {background-position:0 -400px;}
+select#id_network_id option.h15 {background-position:0 -440px;}
+select#id_network_id option.jaiku {background-position:0 -480px;}
+select#id_network_id option.lastfm {background-position:0 -520px;}
+select#id_network_id option.linkedin {background-position:0 -560px;}
+select#id_network_id option.lj {background-position:0 -600px;}
+select#id_network_id option.mog {background-position:0 -640px;}
+select#id_network_id option.multiply {background-position:0 -680px;}
+select#id_network_id option.myspace {background-position:0 -720px !important;}
+select#id_network_id option.newsvine {background-position:0 -760px;}
+select#id_network_id option.ning {background-position:0 -800px;}
+select#id_network_id option.orkut {background-position:0 -840px;}
+select#id_network_id option.pandora {background-position:0 -880px;}
+select#id_network_id option.pownce {background-position:0 -920px;}
+select#id_network_id option.reddit {background-position:0 -960px;}
+select#id_network_id option.sonicliving {background-position:0 -1000px;}
+select#id_network_id option.stumbleupon {background-position:0 -1040px;}
+select#id_network_id option.tabblo {background-position:0 -1080px;}
+select#id_network_id option.tagworld {background-position:0 -1120px;}
+select#id_network_id option.technorati {background-position:0 -1160px;}
+select#id_network_id option.tribe {background-position:0 -1200px;}
+select#id_network_id option.twitter {background-position:0 -1240px !important;}
+select#id_network_id option.upcoming {background-position:0 -1280px;}
+select#id_network_id option.vox {background-position:0 -1320px;}
+select#id_network_id option.youtube {background-position:0 -1360px;}
+select#id_network_id option.zooomr {background-position:0 -1400px;}

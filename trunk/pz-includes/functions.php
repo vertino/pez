@@ -107,10 +107,10 @@ function flickr_photos( $feed_url, $max_items = 10 )
 
 function profile_list( $deletable = false )
 {
-	if (!class_exists('OtherProfiles'))
+	if (!class_exists('WebDataSources'))
 		return false;
 	
-	$profile = new OtherProfiles();
+	$profile = new WebDataSources();
 	$profile->open();
 		
 	if (empty($profile->profiles))
@@ -125,7 +125,7 @@ function profile_list( $deletable = false )
 	{
 		if ($deletable)
 		{
-			$delete_me = '<form method="post" id="delete-network-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to delete your social network profile for ' . $profile[1][0] . '? ('.$idx.')\');">';
+			$delete_me = '<form method="post" id="delete-network-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to delete your social network profile for ' . $profile[1][0] . '?\');">';
 			$delete_me .= '<input type="hidden" name="form_name" value="delete_sn_form" />';
 			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
 			$delete_me .= '<input type="submit" value="X" class="remove" />';
@@ -138,7 +138,45 @@ function profile_list( $deletable = false )
 	}
 	$html .= "</ul>\n";
 	
-	unset($profile, $profile, $i);
+	unset($profile, $profile_count, $i);
+	
+	return $html;
+}
+
+function source_list( $deletable = false )
+{
+	if (!class_exists('WebDataSources'))
+		return false;
+	
+	$profile = new WebDataSources();
+	$profile->open();
+		
+	if (empty($profile->sources))
+		return false;
+	
+	asort($profile->sources);
+	
+	$i = 0;
+	$html = "<ul>\n";
+	$source_count = (sizeof($profile->sources) - 1);
+	foreach($profile->sources as $idx => $source)
+	{
+		if ($deletable)
+		{
+			$delete_me = '<form method="post" id="delete-source-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to delete your web data source for ' . $source[0] . '?\');">';
+			$delete_me .= '<input type="hidden" name="form_name" value="delete_wds_form" />';
+			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
+			$delete_me .= '<input type="submit" value="X" class="remove" />';
+			$delete_me .= '</form>';
+		}
+		
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $source_count) ? 'last ' : '' ) ) . 'item';
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $source[1] . '">' . $source[0] . '</a>' . $delete_me . "</li>\n";
+		$i++;
+	}
+	$html .= "</ul>\n";
+	
+	unset($source, $source_count, $i);
 	
 	return $html;
 }
