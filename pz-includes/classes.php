@@ -45,6 +45,7 @@ class Profile extends Persistent
 	var $email;
 	var $dob = array();
 	var $gender;
+	var $gravatar;
 	
 	function Profile( $filename = '' )
 	{
@@ -55,10 +56,12 @@ class Profile extends Persistent
 	}
 }
 
-class OtherProfiles extends Persistent
+class WebDataSources extends Persistent
 {
 	var $profiles = array();
-	function OtherProfiles( $filename = '' )
+	var $sources = array();
+	
+	function WebDataSources( $filename = '' )
 	{
 		if ($filename == '')
 			$filename = ABSPATH . '/pz-admin/data/social-networks.php';

@@ -31,7 +31,7 @@ $blogfeeds = array('http://feeds.feedburner.com/thebentaylorblog');
 $blognames = array('bogdind');
 
 // Enter the rss/atom/etc. feeds of any bookmark feeds (del.icio.us, digg, etc.) you have as below (seperated by commas and enclosed in single quotes).
-$bookmarkfeeds = array('http://feeds.delicious.com/rss/thebentaylor','http://digg.com/users/Venkman/history.rss');
+$bookmarkfeeds = array('http://feeds.delicious.com/rss/thebentaylor','http://digg.com/users/Venkman/history.rss', 'http://www.google.com/reader/public/atom/user/08322762871648052302/state/com.google/broadcast');
 
 // Enter the rss/atom/etc. feeds from last.fm (seperated by commas and enclosed in single quotes).
 $musicfeeds = array('http://feeds.feedburner.com/benlastfm');
