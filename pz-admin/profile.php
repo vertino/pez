@@ -12,9 +12,8 @@ include_once('admin-header.php');
 		<h2>Profile</h2>
 		<?php
 			$profile = new Profile();
-			$profile->open();
 			
-			if (isset($_POST['save']))
+			if ( isset($_POST['save']) )
 			{
 				if ( isset($_POST['first_name']) && $_POST['first_name'] != '')
 					$profile->first_name = $_POST['first_name'];
@@ -37,10 +36,11 @@ include_once('admin-header.php');
 				if ( isset($_POST['gender']) && $_POST['gender'] != '')
 					$profile->gender = $_POST['gender'];
 				
+				if ( isset($_POST['photo_url']) && isset($_POST['photo_url']) )
+					$profile->photo_url = $_POST['photo_url'];
+				
 				if ( isset($_POST['gravatar_check']) && isset($_POST['gravatar_url']) )
-					$profile->gravatar = $_POST['gravatar_url'];
-				else
-					unset($profile->gravatar);
+					$profile->photo_url = $_POST['gravatar_url'];
 				
 				$profile->save();
 				echo '<div class="message-box"><span class="success">Your profile has been updated.</span></div>';
@@ -57,10 +57,12 @@ include_once('admin-header.php');
 				<div>
 					<label for="id_last_name">Last name</label>
 					<input type="text" name="last_name" id="id_last_name" value="<?php echo $profile->last_name; ?>" maxlength="32" />
+					<p>Enter your full name here.</p>
 				</div>
 				<div>
 					<label for="id_blurb">Short blurb about me</label>
 					<textarea name="blurb" id="id_blurb" rows="3" cols="40"><?php echo $profile->blurb; ?></textarea>
+					<p>This is a paragraph sized description of you that appears at the top of the page. Remember to use paragraph and break tags.</p>
 				</div>
 				<div>
 					<label for="id_location">Location</label>
@@ -69,6 +71,7 @@ include_once('admin-header.php');
 				<div>
 					<label for="id_email">Email address</label>
 					<input type="text" name="email" id="id_email" value="<?php echo $profile->email; ?>" />
+					<p>Leave this blank if you don't want to publish your email address.</p>
 				</div>
 				<div>
 					<label>Date of Birth</label>
@@ -86,7 +89,7 @@ include_once('admin-header.php');
 					</select>
 				</div>
 				<div>
-					<label>Gender</label>
+					<label for="id_gender">Gender</label>
 					<select name="gender" id="id_gender">
 						<option value="0">Select One</option>
 						<option value="m"<?php if ($profile->gender == 'm') echo ' selected="true"'; ?>>Male</option>
@@ -98,17 +101,22 @@ include_once('admin-header.php');
 			<fieldset>
 				<legend>Misc</legend>
 				<div>
+					<label for="id_photo_url">Profile Photo URL</label>
+					<input type="text" name="photo_url" id="id_photo_url" value="<?php echo $profile->photo_url; ?>" />
+					<p>Enter the URL of your profile image.</p>
+				</div>
+				<div>
 					<label for="id_gravatar_check">Got Gravatar?</label>
 					<?php $has_gravatar = ($profile->gravatar != '') ? ' checked="true"' : ''; ?>
 					<input type="checkbox" name="gravatar_check" id="id_gravatar_check" <?php echo $has_gravatar; ?>onchange="javascript:get_gravatar();" />
-					<div id="gravatar-options">
+					<div id="gravatar-options" style="display:<?php echo ($profile->gravatar != '') ? 'block' : 'none'; ?>;">
 						<div>
 							<label for="id_gravatar_email">Email</label>
 							<input type="text" name="gravatar_email" id="id_gravatar_email" value="<?php echo $profile->email; ?>" />
 						</div>
 						<div>
 							<label for="id_gravatar_url">URL</label>
-							<input type="text" name="gravatar_url" id="id_gravatar_url" value="<?php echo $profile->gravatar; ?>" />
+							<input type="text" name="gravatar_url" id="id_gravatar_url" value="<?php echo $profile->photo_url; ?>" />
 						</div>
 						<div>
 							<img id="gravatar_image" src="<?php echo $profile->gravatar; ?>" alt="[gravatar]" title="Gravatar" />

@@ -2,8 +2,14 @@
 	<head>
 		<title>Pez: Admin</title>
 		<style type="text/css">@import url(admin.css);</style>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
 		<script type="text/javascript">
+			$(document).ready( function() {
+				$('a[rel=external]').click( function() {
+					window.open( $(this).attr('href') );
+					return false;
+				});
+			});
 			function get_gravatar()
 			{
 				$('#gravatar-options').slideToggle('slow', function(){
@@ -30,6 +36,7 @@
 					<li><a href="../" target="_blank">Pez</a></li>
 					<li><a href="profile.php">Profile</a></li>
 					<li><a href="web-sources.php">Web Data Sources</a></li>
+					<li><a href="settings.php">Settings</a></li>
 				</ul>
 			</div>
 			<div id="main">
