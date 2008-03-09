@@ -16,7 +16,7 @@ class Persistent
 	{
 		if ($f = @fopen($this->filename, 'w'))
 		{
-			if (@fwrite($f, serialize(get_object_vars($this))))
+			if (@fwrite($f, '<?php // ' . serialize(get_object_vars($this)) . ' ?>'))
 			{
 				@fclose($f);
 			}
@@ -28,7 +28,7 @@ class Persistent
 	
 	function open()
 	{
-		$vars = unserialize(file_get_contents($this->filename));
+		$vars = unserialize( substr( file_get_contents($this->filename), 9, -3 ) );
 		foreach ($vars as $key => $val)
 		{
 			if ($key != 'filename') // we need to exclude the re-assignment of the filename
