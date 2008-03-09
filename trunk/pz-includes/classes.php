@@ -1,6 +1,6 @@
 <?php
 if (!defined('ABSPATH'))
-	die('unable to continue...');
+	die('The ABSPATH needs to be defined to continue...');
 
 class Persistent
 {
@@ -29,9 +29,10 @@ class Persistent
 	function open()
 	{
 		$vars = unserialize(file_get_contents($this->filename));
-		foreach ($vars as $key=>$val)
-		{           
-			eval("$" . "this->$key = $" . "vars['" . "$key'];");
+		foreach ($vars as $key => $val)
+		{
+			if ($key != 'filename') // we need to exclude the re-assignment of the filename
+				eval("$" . "this->$key = $" . "vars['" . "$key'];");
 		}
 	}
 }
