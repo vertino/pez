@@ -24,7 +24,7 @@ function combine_feeds( $feed_list, $max_items = 10, $delimiter = '~', $remove_h
 		
 		foreach ($feed->get_items(0, $max_items) as $item)
 		{
-			$combined_feed[$item->get_date('U') . $delimiter . $feed->get_title() . $delimiter . $feed->get_link()] = $item;
+			$combined_feed[$item->get_date('U') . $delimiter . $feed->get_title() . $delimiter . $url] = $item;
 		}
 		unset($feed);
 	}
@@ -111,7 +111,7 @@ function profile_list( $deletable = false )
 		return false;
 	
 	$profile = new WebDataSources();
-	$profile->open();
+	//$profile->open();
 		
 	if (empty($profile->profiles))
 		return false;
@@ -133,7 +133,7 @@ function profile_list( $deletable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $profile_count) ? 'last ' : '' ) ) . 'item ' . $profile[0];
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . sprintf($profile[1][1], $profile[2]) . '">' . $profile[1][0] . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . sprintf($profile[1][1], $profile[2]) . '">' . stripslashes( $profile[1][0] ) . '</a>' . $delete_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -149,7 +149,7 @@ function source_list( $deletable = false )
 		return false;
 	
 	$profile = new WebDataSources();
-	$profile->open();
+	//$profile->open();
 		
 	if (empty($profile->sources))
 		return false;
@@ -166,12 +166,12 @@ function source_list( $deletable = false )
 			$delete_me = '<form method="post" id="delete-source-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to delete your web data source for ' . $source[0] . '?\');">';
 			$delete_me .= '<input type="hidden" name="form_name" value="delete_wds_form" />';
 			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
-			$delete_me .= '<input type="submit" value="X" class="remove" />';
+			$delete_me .= '<input type="submit" name="save" id="id_save_wds_' . $idx . '" value="X" class="remove" />';
 			$delete_me .= '</form>';
 		}
 		
-		$class = ( ($i == 0) ? 'first ' : ( ($i == $source_count) ? 'last ' : '' ) ) . 'item';
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $source[1] . '">' . $source[0] . '</a>' . $delete_me . "</li>\n";
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $source_count) ? 'last ' : '' ) ) . 'item ' . get_domain($source[1]);
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $source[1] . '">' . stripslashes( $source[0] ) . '</a>' . $delete_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -181,9 +181,165 @@ function source_list( $deletable = false )
 	return $html;
 }
 
+function blog_list( $deletable = false )
+{
+	if (!class_exists('WebDataSources'))
+		return false;
+	
+	$sources = new WebDataSources();
+		
+	if (empty($sources->blogs))
+		return false;
+	
+	asort($sources->blogs);
+	
+	$i = 0;
+	$html = "<ul class=\"blogs\">\n";
+	$blogs_count = (sizeof($sources->blogs) - 1);
+	
+	foreach($sources->blogs as $idx => $blog)
+	{
+		$blog_source = $sources->sources[$blog];
+		if ($deletable)
+		{
+			$delete_me = '<form method="post" id="delete-blog-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to remove ' . $blog_source[0] . ' from your blogs module?\');">';
+			$delete_me .= '<input type="hidden" name="form_name" value="delete_blg_form" />';
+			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
+			$delete_me .= '<input type="submit" name="save" id="id_save_blg_' . $idx . '" value="X" class="remove" />';
+			$delete_me .= '</form>';
+		}
+		
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $blogs_count) ? 'last ' : '' ) ) . 'item ' . get_domain($blog_source[1]);
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $blog_source[1] . '">' . stripslashes( $blog_source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$i++;
+	}
+	$html .= "</ul>\n";
+	
+	unset($sources, $source, $blogs_count, $i);
+	
+	return $html;
+}
+
+function bookmark_list( $deletable = false )
+{
+	if (!class_exists('WebDataSources'))
+		return false;
+	
+	$sources = new WebDataSources();
+		
+	if (empty($sources->bookmarks))
+		return false;
+	
+	asort($sources->bookmarks);
+	
+	$i = 0;
+	$html = "<ul class=\"bookmarks\">\n";
+	$bookmark_count = (sizeof($sources->bookmarks) - 1);
+	
+	foreach($sources->bookmarks as $idx => $bookmark)
+	{
+		$bookmark_source = $sources->sources[$bookmark];
+		if ($deletable)
+		{
+			$delete_me = '<form method="post" id="delete-bookmark-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to remove ' . $bookmark_source[0] . ' from your bookmarks module?\');">';
+			$delete_me .= '<input type="hidden" name="form_name" value="delete_bkm_form" />';
+			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
+			$delete_me .= '<input type="submit" name="save" id="id_save_bkm_' . $idx . '" value="X" class="remove" />';
+			$delete_me .= '</form>';
+		}
+		
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $bookmark_count) ? 'last ' : '' ) ) . 'item ' . get_domain($bookmark_source[1]);
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $bookmark_source[1] . '">' . stripslashes( $bookmark_source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$i++;
+	}
+	$html .= "</ul>\n";
+	
+	unset($sources, $source, $bookmark_count, $i);
+	
+	return $html;
+}
+
+function photo_list( $deletable = false )
+{
+	if (!class_exists('WebDataSources'))
+		return false;
+	
+	$sources = new WebDataSources();
+		
+	if (empty($sources->photos))
+		return false;
+	
+	asort($sources->photos);
+	
+	$i = 0;
+	$html = "<ul class=\"photos\">\n";
+	$photo_count = (sizeof($sources->photos) - 1);
+	
+	foreach($sources->photos as $idx => $photo)
+	{
+		$photo_source = $sources->sources[$photo];
+		if ($deletable)
+		{
+			$delete_me = '<form method="post" id="delete-photo-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to remove ' . $bookmark_source[0] . ' from your photos module?\');">';
+			$delete_me .= '<input type="hidden" name="form_name" value="delete_pht_form" />';
+			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
+			$delete_me .= '<input type="submit" name="save" id="id_save_pht_' . $idx . '" value="X" class="remove" />';
+			$delete_me .= '</form>';
+		}
+		
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $photo_count) ? 'last ' : '' ) ) . 'item ' . get_domain($photo_source[1]);
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $photo_source[1] . '">' . stripslashes( $photo_source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$i++;
+	}
+	$html .= "</ul>\n";
+	
+	unset($sources, $source, $photo_count, $i);
+	
+	return $html;
+}
+
+function music_list( $deletable = false )
+{
+	if (!class_exists('WebDataSources'))
+		return false;
+	
+	$sources = new WebDataSources();
+		
+	if (empty($sources->music))
+		return false;
+	
+	asort($sources->music);
+	
+	$i = 0;
+	$html = "<ul class=\"photos\">\n";
+	$music_count = (sizeof($sources->music) - 1);
+	
+	foreach($sources->music as $idx => $music)
+	{
+		$music_source = $sources->sources[$music];
+		if ($deletable)
+		{
+			$delete_me = '<form method="post" id="delete-music-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to remove ' . $bookmark_source[0] . ' from your music module?\');">';
+			$delete_me .= '<input type="hidden" name="form_name" value="delete_msc_form" />';
+			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
+			$delete_me .= '<input type="submit" name="save" id="id_save_msc_' . $idx . '" value="X" class="remove" />';
+			$delete_me .= '</form>';
+		}
+		
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $music_count) ? 'last ' : '' ) ) . 'item ' . get_domain($music_source[1]);
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $music_source[1] . '">' . stripslashes( $music_source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$i++;
+	}
+	$html .= "</ul>\n";
+	
+	unset($sources, $source, $music_count, $i);
+	
+	return $html;
+}
+
 function get_domain( $url )
 {
-	$removeables = array('www.', '.com', '.net', '.org', '.gov', '.co', '.uk', '.');
+	$removeables = array('www.', 'ws.', 'feeds.', '.com', '.net', '.org', '.gov', '.co', '.uk', '.');
 	$host = parse_url($url, PHP_URL_HOST);
 	$host = str_replace($removeables, '', $host);
 	return $host;

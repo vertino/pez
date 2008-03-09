@@ -36,6 +36,22 @@ class Persistent
 	}
 }
 
+class Settings extends Persistent
+{
+	var $charset = 'ISO-8859-1';
+	var $max_items = 5;
+	var $date_format = 'M j Y';
+	
+	function Settings( $filename = '' )
+	{
+		if ($filename == '')
+			$filename = ABSPATH . '/pz-admin/data/settings.php';
+		
+		$this->Persistent($filename);
+		$this->open();
+	}
+}
+
 class Profile extends Persistent
 {
 	var $first_name;
@@ -53,6 +69,7 @@ class Profile extends Persistent
 			$filename = ABSPATH . '/pz-admin/data/profile.php';
 		
 		$this->Persistent($filename);
+		$this->open();
 	}
 }
 
@@ -60,6 +77,10 @@ class WebDataSources extends Persistent
 {
 	var $profiles = array();
 	var $sources = array();
+	var $blogs = array();
+	var $bookmarks = array();
+	var $photos = array();
+	var $music = array();
 	
 	function WebDataSources( $filename = '' )
 	{
@@ -67,6 +88,7 @@ class WebDataSources extends Persistent
 			$filename = ABSPATH . '/pz-admin/data/social-networks.php';
 		
 		$this->Persistent($filename);
+		$this->open();
 	}
 }
 ?>
