@@ -40,7 +40,10 @@ include_once('admin-header.php');
 					$profile->photo_url = $_POST['photo_url'];
 				
 				if ( isset($_POST['gravatar_check']) && isset($_POST['gravatar_url']) )
+				{
+					$profile->gravatar = true;
 					$profile->photo_url = $_POST['gravatar_url'];
+				}
 				
 				$profile->save();
 				echo '<div class="message-box"><span class="success">Your profile has been updated.</span></div>';
@@ -104,6 +107,10 @@ include_once('admin-header.php');
 					<label for="id_photo_url">Profile Photo URL</label>
 					<input type="text" name="photo_url" id="id_photo_url" value="<?php echo $profile->photo_url; ?>" />
 					<p>Enter the URL of your profile image.</p>
+					<?php
+						if ( $profile->photo_url != '' )
+							echo '<img src="' . $profile->photo_url . '" alt="[profile photo]" title="Profile Photo" />';
+					?>
 				</div>
 				<div>
 					<label for="id_gravatar_check">Got Gravatar?</label>
