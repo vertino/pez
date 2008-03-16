@@ -119,7 +119,7 @@ function profile_list( $deletable = false )
 	asort($profile->profiles);
 	
 	$i = 0;
-	$html = "<ul>\n";
+	$html = "<ul class=\"profiles\">\n";
 	$profile_count = (sizeof($profile->profiles) - 1);
 	foreach($profile->profiles as $idx => $profile)
 	{
@@ -143,7 +143,7 @@ function profile_list( $deletable = false )
 	return $html;
 }
 
-function source_list( $deletable = false )
+function source_list( $show_ids = false, $deletable = false )
 {
 	if (!class_exists('WebDataSources'))
 		return false;
@@ -157,7 +157,7 @@ function source_list( $deletable = false )
 	asort($profile->sources);
 	
 	$i = 0;
-	$html = "<ul>\n";
+	$html = "<ul class=\"sources\">\n";
 	$source_count = (sizeof($profile->sources) - 1);
 	foreach($profile->sources as $idx => $source)
 	{
@@ -169,9 +169,9 @@ function source_list( $deletable = false )
 			$delete_me .= '<input type="submit" name="save" id="id_save_wds_' . $idx . '" value="X" class="remove" />';
 			$delete_me .= '</form>';
 		}
-		
+		$id = ( ($show_ids) ? ' id="' . $idx . '"' : '');
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $source_count) ? 'last ' : '' ) ) . 'item ' . get_domain($source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $source[1] . '">' . stripslashes( $source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li' . $id . '><a class="' . $class . '" rel="me" href="' . $source[1] . '">' . stripslashes( $source[0] ) . '</a>' . $delete_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -181,14 +181,14 @@ function source_list( $deletable = false )
 	return $html;
 }
 
-function blog_list( $deletable = false )
+function blog_list( $deletable = false, $removable = false )
 {
 	if (!class_exists('WebDataSources'))
 		return false;
 	
 	$sources = new WebDataSources();
 		
-	if (empty($sources->blogs))
+	if ( (empty($sources->blogs)) && (!$removable) )
 		return false;
 	
 	asort($sources->blogs);
@@ -209,8 +209,14 @@ function blog_list( $deletable = false )
 			$delete_me .= '</form>';
 		}
 		
+		if ($removable)
+		{
+			$remove_me = '<a href="#" class="remove">x</a>';
+			$remove_me .= '<input type="hidden" name="blogs[]" id="blogs-' . array_search($blog_source, $sources->sources) . '" value="' . array_search($blog_source, $sources->sources) . '" />';
+		}
+		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $blogs_count) ? 'last ' : '' ) ) . 'item ' . get_domain($blog_source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $blog_source[1] . '">' . stripslashes( $blog_source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $blog_source[1] . '">' . stripslashes( $blog_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -220,17 +226,17 @@ function blog_list( $deletable = false )
 	return $html;
 }
 
-function bookmark_list( $deletable = false )
+function bookmark_list( $deletable = false, $removable = false )
 {
 	if (!class_exists('WebDataSources'))
 		return false;
 	
 	$sources = new WebDataSources();
 		
-	if (empty($sources->bookmarks))
+	if ( (empty($sources->bookmarks)) && (!$removable) )
 		return false;
 	
-	asort($sources->bookmarks);
+	ksort($sources->bookmarks);
 	
 	$i = 0;
 	$html = "<ul class=\"bookmarks\">\n";
@@ -248,8 +254,14 @@ function bookmark_list( $deletable = false )
 			$delete_me .= '</form>';
 		}
 		
+		if ($removable)
+		{
+			$remove_me = '<a href="#" class="remove">x</a>';
+			$remove_me .= '<input type="hidden" name="bookmarks[]" id="bookmarks-' . array_search($bookmark_source, $sources->sources) . '" value="' . array_search($bookmark_source, $sources->sources) . '" />';
+		}
+		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $bookmark_count) ? 'last ' : '' ) ) . 'item ' . get_domain($bookmark_source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $bookmark_source[1] . '">' . stripslashes( $bookmark_source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $bookmark_source[1] . '">' . stripslashes( $bookmark_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -259,14 +271,14 @@ function bookmark_list( $deletable = false )
 	return $html;
 }
 
-function photo_list( $deletable = false )
+function photo_list( $deletable = false, $removable = false )
 {
 	if (!class_exists('WebDataSources'))
 		return false;
 	
 	$sources = new WebDataSources();
 		
-	if (empty($sources->photos))
+	if ( (empty($sources->photos)) && (!$removable) )
 		return false;
 	
 	asort($sources->photos);
@@ -287,8 +299,14 @@ function photo_list( $deletable = false )
 			$delete_me .= '</form>';
 		}
 		
+		if ($removable)
+		{
+			$remove_me = '<a href="#" class="remove">x</a>';
+			$remove_me .= '<input type="hidden" name="photos[]" id="photos-' . array_search($photo_source, $sources->sources) . '" value="' . array_search($photo_source, $sources->sources) . '" />';
+		}
+		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $photo_count) ? 'last ' : '' ) ) . 'item ' . get_domain($photo_source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $photo_source[1] . '">' . stripslashes( $photo_source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $photo_source[1] . '">' . stripslashes( $photo_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -298,20 +316,20 @@ function photo_list( $deletable = false )
 	return $html;
 }
 
-function music_list( $deletable = false )
+function music_list( $deletable = false, $removable = false )
 {
 	if (!class_exists('WebDataSources'))
 		return false;
 	
 	$sources = new WebDataSources();
 		
-	if (empty($sources->music))
+	if ( (empty($sources->music)) && (!$removable) )
 		return false;
 	
 	asort($sources->music);
 	
 	$i = 0;
-	$html = "<ul class=\"photos\">\n";
+	$html = "<ul class=\"music\">\n";
 	$music_count = (sizeof($sources->music) - 1);
 	
 	foreach($sources->music as $idx => $music)
@@ -326,8 +344,14 @@ function music_list( $deletable = false )
 			$delete_me .= '</form>';
 		}
 		
+		if ($removable)
+		{
+			$remove_me = '<a href="#" class="remove">x</a>';
+			$remove_me .= '<input type="hidden" name="music[]" id="music-' . array_search($music_source, $sources->sources) . '" value="' . array_search($music_source, $sources->sources) . '" />';
+		}
+		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $music_count) ? 'last ' : '' ) ) . 'item ' . get_domain($music_source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $music_source[1] . '">' . stripslashes( $music_source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li><a class="' . $class . '" rel="me" href="' . $music_source[1] . '">' . stripslashes( $music_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -339,7 +363,7 @@ function music_list( $deletable = false )
 
 function get_domain( $url )
 {
-	$removeables = array('www.', 'ws.', 'feeds.', '.com', '.net', '.org', '.gov', '.co', '.uk', '.');
+	$removeables = array('www.', 'ws.', 'api.', 'blog.', 'feeds.', '.com', '.net', '.org', '.gov', '.co', '.uk', '.');
 	$host = parse_url($url, PHP_URL_HOST);
 	$host = str_replace($removeables, '', $host);
 	return $host;

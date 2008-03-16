@@ -36,6 +36,7 @@
 					<li><a href="../" target="_blank">Pez</a></li>
 					<li><a href="profile.php">Profile</a></li>
 					<li><a href="web-sources.php">Web Data Sources</a></li>
+					<li><a href="modules.php">Modules</a></li>
 					<li><a href="settings.php">Settings</a></li>
 				</ul>
 			</div>
