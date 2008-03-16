@@ -109,7 +109,7 @@ include_once('admin-header.php');
 				<div>
 					<label for="id_username">Username / User ID</label>
 					<input id="id_username" type="text" name="username" maxlength="32" value="" />
-					<p class="note">Facebook? Use the number in the URL of your 'Profile' page (e.g. <?php $rand = rand(100000000, 999999999); echo "<a href=\"http://www.facebook.com/profile.php?id=$rand\" rel=\"external\">$rand</a>"; ?>)</p>
+					<p class="note">Bebo, Facebook? Use the number in the URL of your 'Profile' page (e.g. <?php $rand = rand(100000000, 999999999); echo "<a href=\"http://www.facebook.com/profile.php?id=$rand\" rel=\"external\">$rand</a>"; ?>)</p>
 				</div>
 				<div><input type="submit" name="save" id="id_save_1" value="Add Social Network" class="button" /></div>
 			</fieldset>

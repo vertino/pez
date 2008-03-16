@@ -1,48 +1,130 @@
-body {margin:0;padding:0;}
+/*reset.css*/body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}ol,ul {list-style:none;}caption,th {text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+/*fonts.css*/body{font:13px arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}table {font-size:inherit;font:100%;}select, input, textarea {font:99% arial,helvetica,clean,sans-serif;}pre, code {font:115% monospace;*font-size:100%;}body * {line-height:1.22em;}
+
+/* generic styles */
+body {background-color:#9be9ed;font-family:"Helvetica Neue",helvetica,arial,sans-serif;}
+p {text-align: justify;}
+
+h1 {font-weight:bold;color:#fff;margin:20px 0 40px;padding:20px 30px 0 0;}
+h2 {font-weight:bold;color:#000;margin:0px -8px 0;padding:0 0 0 5px;}
+h3 {letter-spacing:1px;margin-bottom:0;color:#7D775C;}
+
+a, a:link {font-weight:normal;line-height:1.1em;text-decoration:none;color:#13c3cc;}
+a:visited {font-weight:bold;text-decoration:none;color:#34dae2;}
+a:hover, a:active {text-decoration:underline;color:#45a2a7;}
+
+ul {margin:0 0 10px;}
 ul.accessibility {display:none;visibility:hidden;}
 
-/* very basic styling */
-#page {margin:0 auto;padding:0;width:800px;}
-#header {height:100px;width:100%;margin-bottom:-40px;}
-#header #profile-photo {position:absolute;top:100px;}
-#main {background-color:#ffff99;margin:0 0 0 250px;}
+/* layout styles */
+#page {text-align:left;width:1000px;color:#000;margin:0 auto;padding:0;}
+#header {float:left;width:100%;font-weight:bold;color:#fff;}
+#main {width: 600px;float:right;margin:-198px 0px -30px;padding:0px 125px 0px;}
 
-div.links ul li {height:20px;}
-div.links ul li a {background:transparent url(../../pz-includes/images/favicons.gif) no-repeat;padding:4px 0 4px 25px;}
-div.links ul li a.43things {background-position:0 0;}
-div.links ul li a.bebo {background-position:0 -40px;}
-div.links ul li a.catster {background-position:0 -80px;}
-div.links ul li a.delicious {background-position:0 -120px;}
-div.links ul li a.digg {background-position:0 -160px;}
-div.links ul li a.dodgeball {background-position:0 -200px;}
-div.links ul li a.dogster {background-position:0 -240px;}
-div.links ul li a.dopplr {background-position:0 -280px;}
-div.links ul li a.facebook {background-position:0 -320px;}
-div.links ul li a.flickr {background-position:0 -360px;}
-div.links ul li a.goodreads {background-position:0 -400px;}
-div.links ul li a.h15 {background-position:0 -440px;}
-div.links ul li a.jaiku {background-position:0 -480px;}
-div.links ul li a.audioscrobbler,
-div.links ul li a.lastfm {background-position:0 -520px;}
-div.links ul li a.linkedin {background-position:0 -560px;}
-div.links ul li a.lj {background-position:0 -600px;}
-div.links ul li a.mog {background-position:0 -640px;}
-div.links ul li a.multiply {background-position:0 -680px;}
-div.links ul li a.myspace {background-position:0 -720px;}
-div.links ul li a.newsvine {background-position:0 -760px;}
-div.links ul li a.ning {background-position:0 -800px;}
-div.links ul li a.orkut {background-position:0 -840px;}
-div.links ul li a.pandora {background-position:0 -880px;}
-div.links ul li a.pownce {background-position:0 -920px;}
-div.links ul li a.reddit {background-position:0 -960px;}
-div.links ul li a.sonicliving {background-position:0 -1000px;}
-div.links ul li a.stumbleupon {background-position:0 -1040px;}
-div.links ul li a.tabblo {background-position:0 -1080px;}
-div.links ul li a.tagworld {background-position:0 -1120px;}
-div.links ul li a.technorati {background-position:0 -1160px;}
-div.links ul li a.tribe {background-position:0 -1200px;}
-div.links ul li a.twitter {background-position:0 -1240px;}
-div.links ul li a.upcoming {background-position:0 -1280px;}
-div.links ul li a.vox {background-position:0 -1320px;}
-div.links ul li a.youtube {background-position:0 -1360px;}
-div.links ul li a.zooomr {background-position:0 -1400px;}
+.content-block {
+	background-color: #fff;
+	text-align:left;
+	font:0.83em Arial, sans-serif;
+	line-height:1.2em;
+	border-bottom:1px solid #13c3cc;
+	color:#000;
+	margin:05px 24px 05px;
+	padding:05px 15px 0;
+	}
+	
+#content-about {}
+#content-blog {}
+#content-photos {}
+#content-bookmarks {}
+#content-music {}
+#content-profiles {}
+#content-profiles li {display:inline;}
+
+#links {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	}
+
+.photos {
+      margin:05px 7px 05px;
+      padding:0px 5px 10px;
+      }
+
+#profile-photo img {
+	display: block;
+	position: relative;
+	background-color: #fff;
+	border-bottom: 1px solid #13c3cc;
+	padding: 6px;
+	}
+	
+#profile-photo {
+	float: left;
+       background: #fff;
+	width: 250px;
+	margin: -15px 35px 0px;
+       padding:0px 0 0px;
+	}
+
+#footer {
+      float: right;
+      font:0.7em Arial, sans-serif;
+      color:#000;
+      clear:both;
+      margin:30px 0 0;
+      padding:5px 0 0;
+      }
+
+blockquote {
+      margin : 10px 30px;
+      padding : 0;
+      background-color : transparent;
+      line-height : 14px;
+      }
+
+
+/* social networking styles */
+div.links ul {margin:10px 0 10px 10px;}
+div.links ul li {margin:5px 0 10px 0;}
+div.links ul li a {background:transparent url(../../pz-includes/images/favicons.gif) no-repeat;padding:1px 5px 2px 22px;}
+._43things {background-position:0 -17px !important;}
+.bebo {background-position:0 -36px !important;}
+.catster {background-position:0 -55px !important;}
+.delicious {background-position:0 -74px !important;}
+.digg {background-position:0 -93px !important;}
+.dodgeball {background-position:0 -112px !important;}
+.dogster {background-position:0 -131px !important;}
+.dopplr {background-position:0 -150px !important;}
+.facebook {background-position:0 -169px !important;}
+.flickr {background-position:0 -207px !important;}
+.friendfeed {background-position:0 -188px !important;}
+.goodreads {background-position:0 -226px !important;}
+.google {background-position:0 -245px !important;}
+.hi5 {background-position:0 -264px !important;}
+.jaiku {background-position:0 -283px !important;}
+.audioscrobbler,
+.lastfm {background-position:0 -302px !important;}
+.linkedin {background-position:0 -321px !important;}
+.lj {background-position:0 -340px !important;}
+.mog {background-position:0 -359px !important;}
+.multiply {background-position:0 -378px !important;}
+.myspace {background-position:0 -397px !important;}
+.newsvine {background-position:0 -416px !important;}
+.ning {background-position:0 -435px !important;}
+.orkut {background-position:0 -454px !important;}
+.pandora {background-position:0 -473px !important;}
+.pownce {background-position:0 -492px !important;}
+.reddit {background-position:0 -511px !important;}
+.sonicliving {background-position:0 -530px !important;}
+.stumbleupon {background-position:0 -549px !important;}
+.tabblo {background-position:0 -568px !important;}
+.tagworld {background-position:0 -587px !important;}
+.technorati {background-position:0 -606px !important;}
+.tribe {background-position:0 -625px !important;}
+.twitter {background-position:0 -644px !important;}
+.upcoming {background-position:0 -663px !important;}
+.vox {background-position:0 -682px !important;}
+.wordpress {background-position:0 -701px !important;}
+.youtube {background-position:0 -720px !important;}
+.zooomr {background-position:0 -739px !important;}
