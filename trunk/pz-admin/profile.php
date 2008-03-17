@@ -7,48 +7,53 @@ if ( isset($_GET['gravatar_email']) && $_GET['gravatar_email'] != '' )
 }
 
 require_once('../pz-config.php');
+
+$profile = new Profile();
+
+if ( isset($_POST['save']) )
+{
+	if ( isset($_POST['first_name']) && $_POST['first_name'] != '')
+		$profile->first_name = $_POST['first_name'];
+	
+	if ( isset($_POST['middle_name']) && $_POST['middle_name'] != '')
+		$profile->middle_name = $_POST['middle_name'];
+	
+	if ( isset($_POST['last_name']) && $_POST['last_name'] != '')
+		$profile->last_name = $_POST['last_name'];
+	
+	if ( isset($_POST['blurb']) && $_POST['blurb'] != '')
+		$profile->blurb = $_POST['blurb'];
+	
+	if ( isset($_POST['location']) && $_POST['location'] != '')
+		$profile->location = $_POST['location'];
+	
+	if ( isset($_POST['email']) && $_POST['email'] != '')
+		$profile->email = $_POST['email'];
+	
+	if ( isset($_POST['dob_day']) && isset($_POST['dob_month']) && isset($_POST['dob_year']))
+		$profile->dob = array('day' => $_POST['dob_day'], 'month' => $_POST['dob_month'], 'year' => $_POST['dob_year']);
+	
+	if ( isset($_POST['gender']) && $_POST['gender'] != '')
+		$profile->gender = $_POST['gender'];
+	
+	if ( isset($_POST['photo_url']) && isset($_POST['photo_url']) )
+		$profile->photo_url = $_POST['photo_url'];
+	
+	if ( isset($_POST['gravatar_check']) && isset($_POST['gravatar_url']) )
+	{
+		$profile->gravatar = true;
+		$profile->photo_url = $_POST['gravatar_url'];
+	}
+	
+	$profile->save();
+	
+	$messages[] = array('success', 'Your profile has been updated.');
+}
+
 include_once('admin-header.php');
 ?>
 		<h2>Profile</h2>
-		<?php
-			$profile = new Profile();
-			
-			if ( isset($_POST['save']) )
-			{
-				if ( isset($_POST['first_name']) && $_POST['first_name'] != '')
-					$profile->first_name = $_POST['first_name'];
-				
-				if ( isset($_POST['last_name']) && $_POST['last_name'] != '')
-					$profile->last_name = $_POST['last_name'];
-				
-				if ( isset($_POST['blurb']) && $_POST['blurb'] != '')
-					$profile->blurb = $_POST['blurb'];
-				
-				if ( isset($_POST['location']) && $_POST['location'] != '')
-					$profile->location = $_POST['location'];
-				
-				if ( isset($_POST['email']) && $_POST['email'] != '')
-					$profile->email = $_POST['email'];
-				
-				if ( isset($_POST['dob_day']) && isset($_POST['dob_month']) && isset($_POST['dob_year']))
-					$profile->dob = array('day' => $_POST['dob_day'], 'month' => $_POST['dob_month'], 'year' => $_POST['dob_year']);
-				
-				if ( isset($_POST['gender']) && $_POST['gender'] != '')
-					$profile->gender = $_POST['gender'];
-				
-				if ( isset($_POST['photo_url']) && isset($_POST['photo_url']) )
-					$profile->photo_url = $_POST['photo_url'];
-				
-				if ( isset($_POST['gravatar_check']) && isset($_POST['gravatar_url']) )
-				{
-					$profile->gravatar = true;
-					$profile->photo_url = $_POST['gravatar_url'];
-				}
-				
-				$profile->save();
-				echo '<div class="message-box"><span class="success">Your profile has been updated.</span></div>';
-			}
-		?>
+		<?php do_messages(); ?>
 		
 		<form id="profile" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 			<fieldset>
@@ -58,9 +63,12 @@ include_once('admin-header.php');
 					<input type="text" name="first_name" id="id_first_name" value="<?php echo $profile->first_name; ?>" maxlength="32" />
 				</div>
 				<div>
+					<label for="id_last_name">Middle name</label>
+					<input type="text" name="middle_name" id="id_middle_name" value="<?php echo $profile->middle_name; ?>" maxlength="32" />
+				</div>
+				<div>
 					<label for="id_last_name">Last name</label>
 					<input type="text" name="last_name" id="id_last_name" value="<?php echo $profile->last_name; ?>" maxlength="32" />
-					<p>Enter your full name here.</p>
 				</div>
 				<div>
 					<label for="id_blurb">Short blurb about me</label>
@@ -112,6 +120,7 @@ include_once('admin-header.php');
 							echo '<img src="' . $profile->photo_url . '" alt="[profile photo]" title="Profile Photo" />';
 					?>
 				</div>
+<!--
 				<div>
 					<label for="id_gravatar_check">Got Gravatar?</label>
 					<?php $has_gravatar = ($profile->gravatar != '') ? ' checked="true"' : ''; ?>
@@ -130,6 +139,7 @@ include_once('admin-header.php');
 						</div>
 					</div>
 				</div>
+-->
 				<div><input type="submit" name="save" id="id_save_2" value="Save Changes" class="button" /></div>
 			</fieldset>
 		</form>

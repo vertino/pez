@@ -1,7 +1,7 @@
 <?php
 $social_networks = array(
 //	name          => array(title,           url-format )
-	'_43things'    => array('43Things',     'http://www.43things.com/person/%s'),
+	'_43things'   => array('43Things',      'http://www.43things.com/person/%s'),
 	'bebo'        => array('Bebo',          'http://www.bebo.com/Profile.jsp?MemberId=%s'),
 	'catster'     => array('Catster',       'http://www.catster.com/cats/%s'),
 	'delicious'   => array('del.icio.us',   'http://del.icio.us/%s/'),

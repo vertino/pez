@@ -1,97 +1,107 @@
 <?php
 require_once('../pz-config.php');
 require_once('social-networks.php');
+
+if ( isset($_POST['save']) )
+{
+	// open the profile data
+	$sources = new WebDataSources();
+	
+	// choose the form process
+	if ( isset($_POST['form_name']) && $_POST['form_name'] != '' )
+	{
+		switch ($_POST['form_name'])
+		{
+			case 'sn_form' :
+				$network_id = $_POST['network_id'];
+				$username = $_POST['username'];
+				$sources->profiles[] = array($network_id, $social_networks[$network_id], $username);
+				$messages[] = array('success', 'Successfully added ' . $social_networks[$network_id][0] . ' to your profile list.');
+				break;
+			
+			case 'delete_sn_form' :
+				$delete_id = $_POST['delete_id'];
+				$messages[] = array('success', $sources->profiles[$delete_id][1][0] . ' has been removed from your profile list.');
+				unset($sources->profiles[$delete_id]);
+				break;
+			
+			case 'wds_form' :
+				$source_title = $_POST['source_title'];
+				$source_url = $_POST['source_url'];
+				// here we should use simplepie to:
+				//   a. verify that it's an atom/rss feed
+				//   b. if it's a webpage, then use simplepie's auto-discovery to get the atom/rss feed
+				//   c. alert the user that it's not a valid feed url
+				$sources->sources[] = array($source_title, $source_url);
+				$messages[] = array('success', 'Successfully added ' . $source_title . ' to your data-source list.');
+				break;
+			
+			case 'delete_wds_form' :
+				$delete_id = $_POST['delete_id'];
+				$messages[] = array('success', $sources->sources[$delete_id][0] . ' has been removed from your data-source list.');
+				unset($sources->sources[$delete_id]);
+				break;
+			
+//			case 'blg_form' :
+//				$source_id = $_POST['source_id'];
+//				$sources->blogs[] = $source_id;
+//				$messages[] = array('success', 'Successfully added ' . $sources->sources[$source_id][0] . ' to your blogs list.');
+//				break;
+			
+//			case 'delete_blg_form' :
+//				$delete_id = $_POST['delete_id'];
+//				$messages[] = array('success', $sources->sources[$sources->blogs[$delete_id]][0] . ' has been removed from your blogs list.');
+//				unset($sources->blogs[$delete_id]);
+//				break;
+			
+//			case 'bkm_form' : 
+//				$source_id = $_POST['source_id'];
+//				$sources->bookmarks[] = $source_id;
+//				break;
+			
+//			case 'delete_bkm_form' :
+//				$delete_id = $_POST['delete_id'];
+//				$messages[] = array('success', $sources->sources[$sources->bookmarks[$delete_id]][0] . ' has been removed from your bookmarks list.');
+//				unset($sources->bookmarks[$delete_id]);
+//				break;
+			
+//			case 'pht_form' :
+//				$source_id = $_POST['source_id'];
+//				$sources->photos[] = $source_id;
+//				break;
+			
+//			case 'delete_pht_form' :
+//				$delete_id = $_POST['delete_id'];
+//				$messages[] = array('success', $sources->sources[$sources->photos[$delete_id]][0] . ' has been removed from your photos list.');
+//				unset($sources->photos[$delete_id]);
+//				break;
+			
+//			case 'msc_form' :
+//				$source_id = $_POST['source_id'];
+//				$sources->music[] = $source_id;
+//				break;
+			
+//			case 'delete_msc_form' :
+//				$delete_id = $_POST['delete_id'];
+//				$messages[] = array('success', $sources->sources[$sources->music[$delete_id]][0] . ' has been removed from your music list.');
+//				unset($sources->music[$delete_id]);
+//				break;
+			
+			default :
+				break;
+		}
+	}
+	
+	// save and close the profile data
+	$sources->save();
+	unset($sources);
+}
+
 include_once('admin-header.php');
 ?>
 		<h2>Web Data Sources</h2>
+		<?php do_messages(); ?>
 		
-		<?php
-			if ( isset($_POST['save']) )
-			{
-				// open the profile data
-				$sources = new WebDataSources();
-				
-				// choose the form process
-				if ( isset($_POST['form_name']) && $_POST['form_name'] != '' )
-				{
-					switch ($_POST['form_name'])
-					{
-						case 'sn_form' :
-							$network_id = $_POST['network_id'];
-							$username = $_POST['username'];
-							$sources->profiles[] = array($network_id, $social_networks[$network_id], $username);
-							break;
-						
-						case 'delete_sn_form' :
-							$delete_id = $_POST['delete_id'];
-							unset($sources->profiles[$delete_id]);
-							break;
-						
-						case 'wds_form' :
-							$source_title = $_POST['source_title'];
-							$source_url = $_POST['source_url'];
-							// here we should use simplepie to:
-							//   a. verify that it's an atom/rss feed
-							//   b. if it's a webpage, then use simplepie's auto-discovery to get the atom/rss feed
-							//   c. alert the user that it's not a valid feed url
-							$sources->sources[] = array($source_title, $source_url);
-							break;
-						
-						case 'delete_wds_form' :
-							$delete_id = $_POST['delete_id'];
-							unset($sources->sources[$delete_id]);
-							break;
-						
-						case 'blg_form' :
-							$source_id = $_POST['source_id'];
-							$sources->blogs[] = $source_id;
-							break;
-						
-						case 'delete_blg_form' :
-							$delete_id = $_POST['delete_id'];
-							unset($sources->blogs[$delete_id]);
-							break;
-						
-						case 'bkm_form' : 
-							$source_id = $_POST['source_id'];
-							$sources->bookmarks[] = $source_id;
-							break;
-						
-						case 'delete_bkm_form' :
-							$delete_id = $_POST['delete_id'];
-							unset($sources->bookmarks[$delete_id]);
-							break;
-						
-						case 'pht_form' :
-							$source_id = $_POST['source_id'];
-							$sources->photos[] = $source_id;
-							break;
-						
-						case 'delete_pht_form' :
-							$delete_id = $_POST['delete_id'];
-							unset($sources->photos[$delete_id]);
-							break;
-						
-						case 'msc_form' :
-							$source_id = $_POST['source_id'];
-							$sources->music[] = $source_id;
-							break;
-						
-						case 'delete_msc_form' :
-							$delete_id = $_POST['delete_id'];
-							unset($sources->music[$delete_id]);
-							break;
-						
-						default :
-							break;
-					}
-				}
-				
-				// save and close the profile data
-				$sources->save();
-				unset($sources);
-			}
-		?>
 		<form name="add-network" id="add-network" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#add-network" onsubmit="javascript:return (this.network_id.value != '-1');">
 			<fieldset>
 				<legend>Add a Social Network</legend>
@@ -131,7 +141,7 @@ include_once('admin-header.php');
 				<div><input type="submit" name="save" id="id_save_2" value="Add Web Data Source" class="button" /></div>
 			</fieldset>
 		</form>
-		
+<!--
 		<form name="add-blogs" id="add-blogs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#add-blogs" onsubmit="javascript:return (this.source_id.value != '-1');">
 			<fieldset>
 				<legend>Add Sources to Blogs Module</legend>
@@ -219,25 +229,33 @@ include_once('admin-header.php');
 				<div><input type="submit" name="save" id="id_save_6" value="Add Source to Music" class="button" /></div>
 			</fieldset>
 		</form>
-		
-		<div style="position:absolute;top:100px;right:20px;background-color:#ccc;width:150px;">
-			<h4>profiles</h4>
-			<?php echo profile_list(true); ?>
-			<hr />
-			<h4>sources</h4>
-			<?php echo source_list(true); ?>
-			<hr />
-			<h4>blogs</h4>
-			<?php echo blog_list(true); ?>
-			<hr />
-			<h4>bookmarks</h4>
-			<?php echo bookmark_list(true); ?>
-			<hr />
-			<h4>photos</h4>
-			<?php echo photo_list(true); ?>
-			<hr />
-			<h4>music</h4>
-			<?php echo music_list(true); ?>
+-->
+		<div id="data-sources">
+			<p>Do you want to add your data-sources to the content modules? <a href="modules.php">Please go to the Modules page.</a></p>
+			<div class="profiles">
+				<h4>profiles</h4>
+				<?php echo profile_list(); ?>
+			</div>
+			<div class="sources">
+				<h4>sources</h4>
+				<?php echo source_list(); ?>
+			</div>
+			<div class="blogs">
+				<h4>blogs</h4>
+				<?php echo blog_list(); ?>
+			</div>
+			<div class="bookmarks">
+				<h4>bookmarks</h4>
+				<?php echo bookmark_list(); ?>
+			</div>
+			<div class="photos">
+				<h4>photos</h4>
+				<?php echo photo_list(); ?>
+			</div>
+			<div class="music">
+				<h4>music</h4>
+				<?php echo music_list(); ?>
+			</div>
 		</div>
 		
 <?php

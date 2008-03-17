@@ -128,7 +128,7 @@ function profile_list( $deletable = false )
 			$delete_me = '<form method="post" id="delete-network-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to delete your social network profile for ' . $profile[1][0] . '?\');">';
 			$delete_me .= '<input type="hidden" name="form_name" value="delete_sn_form" />';
 			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
-			$delete_me .= '<input type="submit" value="X" class="remove" />';
+			$delete_me .= '<input type="submit" name="save" id="id_save_sn_' . $idx . '" value="X" class="remove" />';
 			$delete_me .= '</form>';
 		}
 		
@@ -367,6 +367,32 @@ function get_domain( $url )
 	$host = parse_url($url, PHP_URL_HOST);
 	$host = str_replace($removeables, '', $host);
 	return $host;
+}
+
+function do_messages( $echo = true )
+{
+	global $messages;
+	
+	$html = '';
+	
+	if ( isset($messages) )
+	{
+		foreach ($messages as $message)
+		{
+			$html .= "<div class=\"message-box\"><span class=\"{$message[0]}\">{$message[1]}</span></div>";
+		}
+	}
+	
+	if ( empty($html) )
+		return;
+	
+	if ($echo)
+	{
+		echo $html;
+		return;
+	}
+	
+	return $html;
 }
 
 ?>
