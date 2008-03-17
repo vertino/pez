@@ -5,9 +5,14 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
 		<script type="text/javascript">
 			$(document).ready( function() {
-				$('a[rel=external]').click( function() {
+				$('a[rel=external]').click(function()
+				{
 					window.open( $(this).attr('href') );
 					return false;
+				});
+				$('.message-box').click(function()
+				{
+					$(this).fadeOut('slow');
 				});
 			});
 			function get_gravatar()
@@ -33,11 +38,11 @@
 			<div id="header">
 				<h1>Pez: Your online personal profile</h1>
 				<ul id="menu">
-					<li><a href="../" target="_blank">Pez</a></li>
-					<li><a href="profile.php">Profile</a></li>
-					<li><a href="web-sources.php">Web Data Sources</a></li>
-					<li><a href="modules.php">Modules</a></li>
-					<li><a href="settings.php">Settings</a></li>
+					<li class="first"><a href="../" target="_blank">Pez</a></li>
+					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/profile.php') echo 'current'; ?>"><a href="profile.php">Profile</a></li>
+					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/web-sources.php') echo 'current'; ?>"><a href="web-sources.php">Web Data Sources</a></li>
+					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/modules.php') echo 'current'; ?>"><a href="modules.php">Modules</a></li>
+					<li class="last<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/settings.php') echo ' current'; ?>"><a href="settings.php">Settings</a></li>
 				</ul>
 			</div>
 			<div id="main">

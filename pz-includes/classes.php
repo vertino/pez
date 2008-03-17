@@ -56,6 +56,7 @@ class Settings extends Persistent
 class Profile extends Persistent
 {
 	var $first_name;
+	var $middle_name;
 	var $last_name;
 	var $blurb;
 	var $location;
