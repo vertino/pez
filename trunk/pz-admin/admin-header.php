@@ -1,3 +1,4 @@
+<?php if ( !isset($no_login) ) auth_redirect(); ?>
 <html dir="ltr" lang="en">
 	<head>
 		<title>Pez: Admin</title>
@@ -43,6 +44,7 @@
 					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/web-sources.php') echo 'current'; ?>"><a href="web-sources.php">Web Data Sources</a></li>
 					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/modules.php') echo 'current'; ?>"><a href="modules.php">Modules</a></li>
 					<li class="last<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/settings.php') echo ' current'; ?>"><a href="settings.php">Settings</a></li>
+					<li><a href="login.php?logout=true">Logout</a></li>
 				</ul>
 			</div>
 			<div id="main">

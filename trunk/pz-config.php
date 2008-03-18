@@ -1,5 +1,7 @@
 <?php
 define('ABSPATH', dirname(__FILE__));
+define('PASSWORD', 'password');
+define('PASS_COOKIE', 'pez_' . md5(PASSWORD));
 
 include_once(ABSPATH . '/pz-includes/classes.php');
 include_once(ABSPATH . '/pz-includes/functions.php');
@@ -14,4 +16,3 @@ unset($settings);
 $messages = array();
 
 ?>
-

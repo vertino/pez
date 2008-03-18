@@ -395,4 +395,18 @@ function do_messages( $echo = true )
 	return $html;
 }
 
+function auth_redirect()
+{
+	if ( (!defined('PASSWORD')) && (!defined('PASS_COOKIE')) )
+		die('The password has not been defined, unable to continue...');
+	
+	// Checks if a user is logged in, if not redirects them to the login page
+	if ( ( (!empty($_COOKIE[PASS_COOKIE])) && ( $_COOKIE[PASS_COOKIE] != md5(md5(PASSWORD)) ) ) || (empty($_COOKIE[PASS_COOKIE])) )
+	{
+		$location = './login.php?redirect_to=' . urlencode($_SERVER['REQUEST_URI']);
+		header("Location: $location");
+		exit();
+	}
+}
+
 ?>
