@@ -234,11 +234,11 @@ include_once('admin-header.php');
 			<p>Do you want to add your data-sources to the content modules? <a href="modules.php">Please go to the Modules page.</a></p>
 			<div class="profiles">
 				<h4>profiles</h4>
-				<?php echo profile_list(); ?>
+				<?php echo profile_list(true); ?>
 			</div>
 			<div class="sources">
 				<h4>sources</h4>
-				<?php echo source_list(); ?>
+				<?php echo source_list(false, true); ?>
 			</div>
 			<div class="blogs">
 				<h4>blogs</h4>

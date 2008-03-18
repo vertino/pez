@@ -32,7 +32,8 @@ fieldset div input,
 fieldset div select,
 fieldset div textarea {float:left;font-family:Georgia,"Times New Roman",Times,serif;width:250px;padding:2px 3px;}
 fieldset div select,
-fieldset div input.button {width:auto;}
+fieldset div input.button,
+fieldset div input.checkbox {width:auto;}
 fieldset div textarea {height:100px;padding:5px 3px;}
 fieldset div p {float:left;clear:both;font-size:85%;margin:5px 0;width:400px;}
 
