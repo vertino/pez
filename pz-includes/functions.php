@@ -409,4 +409,60 @@ function auth_redirect()
 	}
 }
 
+function get_stylesheet()
+{
+	if ( is_mobile() )
+		return 'pz-content/themes/mobile.css';
+	
+	return 'pz-content/themes/style.css';
+}
+
+// Code borrowed from: Alex King's WordPress Mobile Edition 2.0 - http://alexking.org/projects/wordpress
+function is_mobile()
+{
+	if ( !isset($_SERVER["HTTP_USER_AGENT"]) )
+		return false;
+	
+	$mobile_browsers = array(
+		'2.0 MMP'
+		,'240x320'
+		,'AvantGo'
+		,'BlackBerry'
+		,'Blazer'
+		,'Cellphone'
+		,'Danger'
+		,'DoCoMo'
+		,'Elaine/3.0'
+		,'EudoraWeb'
+		,'hiptop'
+		,'MMEF20'
+		,'MOT-V'
+		,'NetFront'
+		,'Newt'
+		,'Nokia'
+		,'Opera Mini'
+		,'Palm'
+		,'portalmmm'
+		,'Proxinet'
+		,'ProxiNet'
+		,'SHARP-TQ-GX10'
+		,'Small'
+		,'SonyEricsson'
+		,'Symbian OS'
+		,'SymbianOS'
+		,'TS21i-10'
+		,'UP.Browser'
+		,'UP.Link'
+		,'Windows CE'
+		,'WinWAP'
+	);
+	foreach ($mobile_browsers as $browser)
+	{
+		if (strstr($_SERVER["HTTP_USER_AGENT"], $browser))
+			return true;
+	}
+	
+	return false;
+}
+
 ?>
