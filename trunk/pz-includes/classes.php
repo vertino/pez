@@ -60,6 +60,7 @@ class Profile extends Persistent
 	var $last_name;
 	var $blurb;
 	var $location;
+	var $country;
 	var $email;
 	var $dob = array();
 	var $gender;

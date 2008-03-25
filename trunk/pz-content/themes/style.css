@@ -21,7 +21,7 @@ ul.accessibility {display:none;visibility:hidden;}
 #header {float:left;width:100%;font-weight:bold;color:#fff;}
 #main {width: 600px;float:right;margin:-198px 0px -30px;padding:0px 125px 0px;}
 
-.content-block {
+.module {
 	background-color: #fff;
 	text-align:left;
 	font:0.83em Arial, sans-serif;
@@ -32,13 +32,13 @@ ul.accessibility {display:none;visibility:hidden;}
 	padding:05px 15px 0;
 	}
 	
-#content-about {}
-#content-blog {}
-#content-photos {}
-#content-bookmarks {}
-#content-music {}
-#content-profiles {}
-#content-profiles li {display:inline;}
+#about {}
+#blogs {}
+#photos {}
+#bookmarks {}
+#music {}
+#profiles {}
+#profiles li {display:inline;}
 
 #links {
 	list-style-type: none;
