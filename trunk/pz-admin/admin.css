@@ -6,10 +6,11 @@ body {background-color:#e5e5e5;color:#000;}
 a {color:#009;text-decoration:none;}
 a:hover {color:#909;text-decoration:underline;}
 
-.message-box span {cursor:pointer;display:block;background-color:#e5e5e5;border:dotted 2px #ccc;font-weight:bold;margin:10px 50px;padding:10px;text-align:center;}
-.message-box .success {border-color:#0c0;background-color:#e5ffe5;color:#090;}
-.message-box .error {border-color:#c00;background-color:#ffe5e5;color:#900;}
-.message-box .info {border-color:#cc0;background-color:#ffffe5;color:#990;}
+.message-box span {cursor:pointer;display:block;background-color:#e5e5e5;border:double 3px #ccc;font-weight:bold;margin:10px 50px;padding:10px 35px;text-align:left;}
+.message-box .success {border-color:#0c0;background:#e5ffe5 url(../pz-includes/images/accept.png) no-repeat 10px 50%;color:#090;}
+.message-box .error {border-color:#c00;background:#ffe5e5 url(../pz-includes/images/exclamation.png) no-repeat 10px 50%;color:#900;}
+.message-box .warning {border-color:#cc0;background:#ffffe5 url(../pz-includes/images/error.png) no-repeat 10px 50%;color:#990;}
+.message-box .info {border-color:#00c;background:#d0d0ff url(../pz-includes/images/lightbulb_off.png) no-repeat 10px 50%;color:#009;}
 
 /* layout styles */
 #page {}
@@ -46,16 +47,20 @@ select#id_network_id option.select {background:none;}
 
 #data-sources {float:left;clear:both;width:100%;}
 #data-sources div {float:left;background-color:#e0e0e0;border:solid 1px #ccc;width:15%;margin-right:5px;padding:5px;}
+#data-sources li {float:left;clear:both;margin-bottom:5px;}
+#data-sources li a {float:left;}
+#data-sources li form {float:right;}
+#data-sources li form input.remove {background:#fff url(../pz-includes/images/cross.png) no-repeat 50% 50%;border:double 3px #ccc;cursor:pointer;height:24px;width:24px;text-indent:-9999px;}
 
-/* modules styles */
-#web-data-sources {float:left;}
 form#modules ul {list-style:none;margin:0;padding:0;}
 form#modules ul li {float:left;clear:both;display:block;cursor:move;border:1px solid #ccc;background-color:#fff;margin:0 0 5px 0;padding:5px;width:200px;z-index:100;}
 form#modules ul li a.item {float:left;display:block;background:transparent url(../pz-includes/images/favicons.gif) no-repeat 0 0;height:19px;padding:0 0 0 22px;}
 
-a.remove {float:right;}
+a.remove {float:right;display:block;background:#fff url(../pz-includes/images/cross.png) no-repeat left 50%;margin-top:2px;width:16px;text-indent:-9999px;outline:none;}
 
-.drop {float:right;background-color:#fff;border:solid 1px #ccc;padding:5px;width:450px;}
+#web-data-sources {float:left;}
+.drop-boxes {float:left;}
+.drop {float:left;background-color:#fff;border:solid 1px #ccc;padding:5px;}
 .droppable-active {background-color:#efefcc;}
 .droppable-hover {background-color:#ccefcc;}
 

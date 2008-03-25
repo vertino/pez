@@ -87,6 +87,30 @@ if ( isset($_POST['save']) )
 //				unset($sources->music[$delete_id]);
 //				break;
 			
+			case 'modules_form' :
+				if ( isset($_POST['blogs']) && is_array($_POST['blogs']) )
+					$sources->blogs = $_POST['blogs'];
+				else
+					unset($sources->blogs);
+				
+				if ( isset($_POST['bookmarks']) && is_array($_POST['bookmarks']) )
+					$sources->bookmarks = $_POST['bookmarks'];
+				else
+					unset($sources->bookmarks);
+				
+				if ( isset($_POST['photos']) && is_array($_POST['photos']) )
+					$sources->photos = $_POST['photos'];
+				else
+					unset($sources->photos);
+				
+				if ( isset($_POST['music']) && is_array($_POST['music']) )
+					$sources->music = $_POST['music'];
+				else
+					unset($sources->music);
+				
+				$messages[] = array('success', 'Your content modules have been updated.');
+				break;
+			
 			default :
 				break;
 		}
@@ -119,7 +143,7 @@ include_once('admin-header.php');
 				<div>
 					<label for="id_username">Username / User ID</label>
 					<input id="id_username" type="text" name="username" maxlength="32" value="" />
-					<p class="note">Bebo, Facebook? Use the number in the URL of your 'Profile' page (e.g. <?php $rand = rand(100000000, 999999999); echo "<a href=\"http://www.facebook.com/profile.php?id=$rand\" rel=\"external\">$rand</a>"; ?>)</p>
+					<p class="note">Bebo, Facebook? Use the number in the URL of your 'Profile' page (e.g. <?php $rand = rand(100000000, 999999999); echo $rand; ?>)</p>
 				</div>
 				<div><input type="submit" name="save" id="id_save_1" value="Add Social Network" class="button" /></div>
 			</fieldset>
@@ -141,97 +165,8 @@ include_once('admin-header.php');
 				<div><input type="submit" name="save" id="id_save_2" value="Add Web Data Source" class="button" /></div>
 			</fieldset>
 		</form>
-<!--
-		<form name="add-blogs" id="add-blogs" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#add-blogs" onsubmit="javascript:return (this.source_id.value != '-1');">
-			<fieldset>
-				<legend>Add Sources to Blogs Module</legend>
-				<p>Here you can select which web data sources you want to show in your blogs module.</p>
-				<input type="hidden" name="form_name" id="id_form_name" value="blg_form" />
-				<div>
-					<label for="id_blg_source_id">Select a web data source</label>
-					<select name="source_id" id="id_blg_source_id">
-						<option class="select" value="-1">Pick one...</option>
-					<?php
-						$sources = new WebDataSources();
-						asort($sources->sources);
-					?>
-					<?php foreach ($sources->sources as $idx => $source) : if ( !in_array($idx, $sources->blogs) ) : ?>
-						<option value="<?php echo $idx; ?>"><?php echo stripslashes( $source[0] ); ?></option>
-					<?php endif; endforeach; unset($sources); ?>
-					</select>
-				</div>
-				<div><input type="submit" name="save" id="id_save_3" value="Add Source to Blogs" class="button" /></div>
-			</fieldset>
-		</form>
 		
-		<form name="add-bookmarks" id="add-bookmarks" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#add-bookmarks" onsubmit="javascript:return (this.source_id.value != '-1');">
-			<fieldset>
-				<legend>Add Sources to Bookmark Module</legend>
-				<p>Here you can select which web data sources you want to show in your bookmarks module.</p>
-				<input type="hidden" name="form_name" id="id_form_name" value="bkm_form" />
-				<div>
-					<label for="id_bkm_source_id">Select a web data source</label>
-					<select name="source_id" id="id_bkm_source_id">
-						<option class="select" value="-1">Pick one...</option>
-					<?php
-						$sources = new WebDataSources();
-						asort($sources->sources);
-					?>
-					<?php foreach ($sources->sources as $idx => $source) : if ( !in_array($idx, $sources->bookmarks) ) : ?>
-						<option value="<?php echo $idx; ?>"><?php echo stripslashes( $source[0] ); ?></option>
-					<?php endif; endforeach; unset($sources); ?>
-					</select>
-				</div>
-				<div><input type="submit" name="save" id="id_save_4" value="Add Source to Bookmarks" class="button" /></div>
-			</fieldset>
-		</form>
-		
-		<form name="add-photos" id="add-photos" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#add-photos" onsubmit="javascript:return (this.source_id.value != '-1');">
-			<fieldset>
-				<legend>Add Sources to Photos Module</legend>
-				<p>Here you can select which web data sources you want to show in your photos module.</p>
-				<input type="hidden" name="form_name" id="id_form_name" value="pht_form" />
-				<div>
-					<label for="id_pht_source_id">Select a web data source</label>
-					<select name="source_id" id="id_pht_source_id">
-						<option class="select" value="-1">Pick one...</option>
-					<?php
-						$sources = new WebDataSources();
-						asort($sources->sources);
-					?>
-					<?php foreach ($sources->sources as $idx => $source) : if ( !in_array($idx, $sources->photos) ) : ?>
-						<option value="<?php echo $idx; ?>"><?php echo stripslashes( $source[0] ); ?></option>
-					<?php endif; endforeach; unset($sources); ?>
-					</select>
-				</div>
-				<div><input type="submit" name="save" id="id_save_5" value="Add Source to Photos" class="button" /></div>
-			</fieldset>
-		</form>
-		
-		<form name="add-music" id="add-music" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#add-music" onsubmit="javascript:return (this.source_id.value != '-1');">
-			<fieldset>
-				<legend>Add Sources to Music Module</legend>
-				<p>Here you can select which web data sources you want to show in your music module.</p>
-				<input type="hidden" name="form_name" id="id_form_name" value="msc_form" />
-				<div>
-					<label for="id_pht_source_id">Select a web data source</label>
-					<select name="source_id" id="id_msc_source_id">
-						<option class="select" value="-1">Pick one...</option>
-					<?php
-						$sources = new WebDataSources();
-						asort($sources->sources);
-					?>
-					<?php foreach ($sources->sources as $idx => $source) : if ( !in_array($idx, $sources->music) ) : ?>
-						<option value="<?php echo $idx; ?>"><?php echo stripslashes( $source[0] ); ?></option>
-					<?php endif; endforeach; unset($sources); ?>
-					</select>
-				</div>
-				<div><input type="submit" name="save" id="id_save_6" value="Add Source to Music" class="button" /></div>
-			</fieldset>
-		</form>
--->
 		<div id="data-sources">
-			<p>Do you want to add your data-sources to the content modules? <a href="modules.php">Please go to the Modules page.</a></p>
 			<div class="profiles">
 				<h4>profiles</h4>
 				<?php echo profile_list(true); ?>
@@ -240,23 +175,85 @@ include_once('admin-header.php');
 				<h4>sources</h4>
 				<?php echo source_list(false, true); ?>
 			</div>
-			<div class="blogs">
-				<h4>blogs</h4>
-				<?php echo blog_list(); ?>
-			</div>
-			<div class="bookmarks">
-				<h4>bookmarks</h4>
-				<?php echo bookmark_list(); ?>
-			</div>
-			<div class="photos">
-				<h4>photos</h4>
-				<?php echo photo_list(); ?>
-			</div>
-			<div class="music">
-				<h4>music</h4>
-				<?php echo music_list(); ?>
-			</div>
 		</div>
+		
+
+
+<script src="../pz-includes/js/jquery.dimensions.js"></script>
+<script src="../pz-includes/js/ui.mouse.js"></script>
+<script src="../pz-includes/js/ui.draggable.js"></script>
+<script src="../pz-includes/js/ui.draggable.ext.js"></script>
+<script src="../pz-includes/js/ui.droppable.js"></script>
+<script src="../pz-includes/js/ui.droppable.ext.js"></script>
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+
+		$("#web-data-sources>ul.sources>li").draggable({helper:'clone',cursor:'move'});
+		$("ul.sources>li>a").click( function(){alert( $("form#modules").serialize() );return false;}).removeAttr("href");
+		$("a.remove").click( function(){ $(this).parent().fadeOut("slow", function(){ $(this).remove(); }); return false; });
+		
+		$(".drop").droppable(
+		{
+			accept: "#web-data-sources>ul.sources>li",
+			activeClass: 'droppable-active',
+			hoverClass: 'droppable-hover',
+			drop: function(ev, ui)
+			{
+				if ( !$(this).children("ul:contains('" + $(ui.draggable).text() + "')").length )
+				{
+					var block = $(ui.draggable).clone();
+					var removeLink = $("<a href='#' class='remove'>x</a>");
+					removeLink.click( function(){ $(this).parent().fadeOut("slow", function(){ $(this).remove(); }); return false; });
+					block.append( removeLink );
+					block.append( $("<input type='hidden' name='" + $(this).attr("id") + "[]' id='" + $(this).attr("id") + "-" + block.attr("id") + "' value='" + block.attr("id") + "' />") );
+					
+					$(this).children("ul").append( block );
+				}
+			}
+		});
+
+	});
+</script>
+		<form name="modules" id="modules" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#modules" onsubmit="javascript:return true;">
+			<fieldset>
+				<legend>Add Web Data Sources to Modules</legend>
+				
+				<div id="web-data-sources">
+					<?php echo source_list(true, false); ?>
+				</div>
+				
+			<div class="drop-boxes">
+				
+				<div id="blogs" class="drop">
+					<h3>Blogs Module</h3>
+					<?php echo blog_list(false, true); ?>
+				</div>
+				
+				<div id="bookmarks" class="drop">
+					<h3>Bookmarks Module</h3>
+					<?php echo bookmark_list(false, true); ?>
+				</div>
+				
+				<div id="photos" class="drop">
+					<h3>Photos Module</h3>
+					<?php echo photo_list(false, true); ?>
+				</div>
+				
+				<div id="music" class="drop">
+					<h3>Music Module</h3>
+					<?php echo music_list(false, true); ?>
+				</div>
+				
+			</div>
+				
+				<div>
+					<input type="hidden" name="form_name" id="id_form_name" value="modules_form" />
+					<input type="submit" name="save" id="save" value="Save" />
+				</div>
+				
+			</fieldset>
+		</form>
 		
 <?php
 include_once('admin-footer.php');
