@@ -7,6 +7,7 @@ if ( isset($_GET['gravatar_email']) && $_GET['gravatar_email'] != '' )
 }
 
 require_once('../pz-config.php');
+require_once('social-networks.php');
 
 $profile = new Profile();
 
@@ -26,6 +27,9 @@ if ( isset($_POST['save']) )
 	
 	if ( isset($_POST['location']) && $_POST['location'] != '')
 		$profile->location = $_POST['location'];
+	
+	if ( isset($_POST['country']) && $_POST['country'] != '')
+		$profile->country = $_POST['country'];
 	
 	if ( isset($_POST['email']) && $_POST['email'] != '')
 		$profile->email = $_POST['email'];
@@ -78,6 +82,15 @@ include_once('admin-header.php');
 				<div>
 					<label for="id_location">Location</label>
 					<input type="text" name="location" id="id_location" value="<?php echo $profile->location; ?>" maxlength="32" />
+				</div>
+				<div>
+					<label for="id_country">Country</label>
+					<select name="country" id="id_country">
+						<option class="select" value="-1">Pick one...</option>
+					<?php foreach ($countries as $code => $country) : ?>
+						<option value="<?php echo $country; ?>"<?php if ($profile->country == $country) echo ' selected="true"'; ?>><?php echo $country; ?></option>
+					<?php endforeach; ?>
+					</select>
 				</div>
 				<div>
 					<label for="id_email">Email address</label>

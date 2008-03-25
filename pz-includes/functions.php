@@ -119,7 +119,7 @@ function profile_list( $deletable = false )
 	asort($profile->profiles);
 	
 	$i = 0;
-	$html = "<ul class=\"profiles\">\n";
+	$html = "<ul class=\"profiles vcard\">\n";
 	$profile_count = (sizeof($profile->profiles) - 1);
 	foreach($profile->profiles as $idx => $profile)
 	{
@@ -132,7 +132,7 @@ function profile_list( $deletable = false )
 			$delete_me .= '</form>';
 		}
 		
-		$class = ( ($i == 0) ? 'first ' : ( ($i == $profile_count) ? 'last ' : '' ) ) . 'item ' . $profile[0];
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $profile_count) ? 'last ' : '' ) ) . 'url item ' . $profile[0];
 		$html .= '<li><a class="' . $class . '" rel="me" href="' . sprintf($profile[1][1], $profile[2]) . '">' . stripslashes( $profile[1][0] ) . '</a>' . $delete_me . "</li>\n";
 		$i++;
 	}

@@ -20,7 +20,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 		<meta name="author" content="<?php echo $profile->first_name . ' ' . $profile->last_name; ?>" />
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
-		<meta name="generator" content="Pez 0.0.8" />
+		<meta name="generator" content="Pez <?php echo $pz_version . '.' . $pz_svn_revision; ?>" />
 		<meta name="robots" content="all" />
 		<meta name="dc.title" content="Pez: <?php echo $fullname; ?>" />
 		<meta name="dc.publisher" content="<?php echo $fullname; ?>" />
@@ -33,27 +33,39 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 			<ul class="accessibility">
 				<li><a href="#skip" title="Skip to content">Skip to content</a></li>
 			</ul>
-			<div id="header">
-				<h1><span><?php echo $fullname; ?></span></h1>
+
+<!--
+<div id="hcard" class="vcard">
+	<img src="<?php echo $profile->photo_url; ?>" alt="photo of <?php echo $fullname; ?>" class="photo" />
+	<span class="fn"><?php echo $fullname; ?></span>
+	<div class="adr">
+		<span class="locality"><?php echo $profile->location; ?></span>
+		<span class="country-name"><?php echo $profile->country; ?></span>
+	</div>
+</div>
+-->
+
+			<div id="header" class="vcard">
+				<h1><span class="fn"><?php echo $fullname; ?></span></h1>
 				<div id="profile-photo"><img src="<?php echo $profile->photo_url; ?>" alt="[Profile photo for <?php echo $fullname; ?>]" title="Profile photo for <?php echo $fullname; ?>" /></div>
 			</div>
 			<div id="main">
 				<a name="skip"></a>
 				<div id="content">
 					
-					<div id="content-about" class="content-block">
-						<h2><span>What I'm About</span></h2>
-						<p><span><?php echo $profile->blurb; ?></span></p>
+					<div id="about" class="module">
+						<h2 class="module-header"><span>What I'm About</span></h2>
+						<p class="module-content"><span><?php echo $profile->blurb; ?></span></p>
 					</div>
 					
-					<div id="content-blog" class="content-block">
-						<h2><span>What I'm Saying:</span></h2>
+					<div id="blogs" class="module">
+						<h2 class="module-header"><span>What I'm Saying:</span></h2>
 						<?php
 							$blogs = array();
 							foreach ( array_intersect_key( $data_sources->sources, array_flip($data_sources->blogs) ) as $source )
 								$blogs[] = $source[1];
 						?>
-						<div class="items">
+						<div class="module-content items">
 <?php foreach (combine_feeds($blogs, MAX_ITEMS, '~') as $key => $item) : $feed_info = explode('~', $key); ?>
 							<div class="item">
 								<h3><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a>:</h3>
@@ -68,9 +80,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 				</div>
 				<div id="panel">
 					
-					<div id="content-photos" class="content-block">
-						<h2>What I'm Seeing:</h2>
-						<div class="photos">
+					<div id="photos" class="module">
+						<h2 class="module-header">What I'm Seeing:</h2>
+						<div class="module-content photos">
 							<?php
 								$photos = array();
 								foreach ( array_intersect_key( $data_sources->sources, array_flip($data_sources->photos) ) as $source )
@@ -80,9 +92,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 						</div>
 					</div>
 					
-					<div id="content-bookmarks" class="content-block">
-						<h2>What I'm Reading:</h2>
-						<div class="links">
+					<div id="bookmarks" class="module">
+						<h2 class="module-header">What I'm Reading:</h2>
+						<div class="module-content links">
 							<?php
 								$bookmarks = array();
 								foreach ( array_intersect_key( $data_sources->sources, array_flip($data_sources->bookmarks) ) as $source )
@@ -92,9 +104,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 						</div>
 					</div>
 					
-					<div id="content-music" class="content-block">
-						<h2>What I'm Hearing:</h2>
-						<div class="links">
+					<div id="music" class="module">
+						<h2 class="module-header">What I'm Hearing:</h2>
+						<div class="module-content links">
 							<?php
 								$music = array();
 								foreach ( array_intersect_key( $data_sources->sources, array_flip($data_sources->music) ) as $source )
@@ -104,9 +116,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 						</div>
 					</div>
 					
-					<div id="content-profiles" class="content-block">
-						<h2>Where You Can Find Me:</h2>
-						<div class="links">
+					<div id="profiles" class="module">
+						<h2 class="module-header">Where You Can Find Me:</h2>
+						<div class="module-content links">
 							<?php echo profile_list(); ?>
 						</div>
 					</div>
