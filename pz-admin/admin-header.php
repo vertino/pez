@@ -3,7 +3,7 @@
 	<head>
 		<title>Pez: Admin</title>
 		<style type="text/css">@import url(admin.css);</style>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+		<script type="text/javascript" src="../pz-includes/js/jquery-1.2.3.pack.js"></script>
 		<script type="text/javascript">
 			$(document).ready( function() {
 				$('a[rel=external]').click(function()
@@ -44,7 +44,7 @@
 					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/web-sources.php') echo 'current'; ?>"><a href="web-sources.php">Web Data Sources</a></li>
 					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/modules.php') echo 'current'; ?>"><a href="modules.php">Modules</a></li>
 					<li class="last<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/settings.php') echo ' current'; ?>"><a href="settings.php">Settings</a></li>
-					<li><a href="login.php?logout=true">Logout</a></li>
+					<?php if ( is_auth() ) : ?><li><a href="login.php?logout=true">Logout</a></li><?php endif; ?>
 				</ul>
 			</div>
 			<div id="main">

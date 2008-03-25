@@ -32,7 +32,7 @@ include_once('admin-header.php');
 			<fieldset>
 				<legend>Please enter your password to login</legend>
 				<div>
-					<p>We decided against a username/password combination as 97.5% of the time people just use "admin" as the default username. Since there is only one user required for Pez, there's no point having a username! (So make sure that your password is strong!)</p>
+					<p>We decided against a username/password combination as <?php echo mt_rand(93, 99) . '.' . mt_rand(1, 99); ?>% of the time people just use "admin" as the default username. Since there is only one user required for Pez, there's no point having a username! (So make sure that your password is strong!)</p>
 				</div>
 				<div>
 					<label for="id_password">Password</label>
