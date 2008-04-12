@@ -446,6 +446,8 @@ function is_mobile()
 		,'Elaine/3.0'
 		,'EudoraWeb'
 		,'hiptop'
+		,'iPhone'
+		,'iPod'
 		,'MMEF20'
 		,'MOT-V'
 		,'NetFront'
