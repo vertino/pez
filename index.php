@@ -24,6 +24,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 		<meta name="robots" content="all" />
 		<meta name="dc.title" content="Pez: <?php echo $fullname; ?>" />
 		<meta name="dc.publisher" content="<?php echo $fullname; ?>" />
+		<meta name="viewport" content="width=320,user-scalable=false" />
 		<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet(); ?>" />
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />	
 		<script type="text/javascript"></script>
