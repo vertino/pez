@@ -24,9 +24,14 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 		<meta name="robots" content="all" />
 		<meta name="dc.title" content="Pez: <?php echo $fullname; ?>" />
 		<meta name="dc.publisher" content="<?php echo $fullname; ?>" />
-		<meta name="viewport" content="width=320,user-scalable=false" />
+<?php if (is_mobile()) : ?>		<meta name="viewport" content="width=320,user-scalable=false" />
+<?php endif; ?>
+<?php if (!empty($profile->openid_server)) : ?>		<link rel="openid.server" href="<?php echo $profile->openid_server; ?>" />
+<?php endif; ?>
+<?php if (!empty($profile->openid_delegate)) : ?>		<link rel="openid.delegate" href="<?php echo $profile->openid_delegate; ?>" />
+<?php endif; ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet(); ?>" />
-		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />	
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 		<script type="text/javascript"></script>
 	</head>
 	<body id="pez">
@@ -81,6 +86,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 				</div>
 				<div id="panel">
 					
+					<?php if ( ( isset($data_sources->photos) ) && (count($data_sources->photos) > 0) ) : ?>
 					<div id="photos" class="module">
 						<h2 class="module-header">What I'm Seeing:</h2>
 						<div class="module-content photos">
@@ -92,7 +98,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 							<?php echo flickr_photos($photos[0], MAX_ITEMS); ?>
 						</div>
 					</div>
+					<?php endif; ?>
 					
+					<?php if ( ( isset($data_sources->bookmarks) ) && (count($data_sources->bookmarks) > 0) ) : ?>
 					<div id="bookmarks" class="module">
 						<h2 class="module-header">What I'm Reading:</h2>
 						<div class="module-content links">
@@ -104,7 +112,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 							<?php echo link_list( combine_feeds($bookmarks, MAX_ITEMS * 2) ); ?>
 						</div>
 					</div>
+					<?php endif; ?>
 					
+					<?php if ( ( isset($data_sources->music) ) && (count($data_sources->music) > 0) ) : ?>
 					<div id="music" class="module">
 						<h2 class="module-header">What I'm Hearing:</h2>
 						<div class="module-content links">
@@ -116,13 +126,17 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 							<?php echo link_list( combine_feeds($music, MAX_ITEMS * 2) ) ?>
 						</div>
 					</div>
+					<?php endif; ?>
 					
+					<?php if ( ( isset($data_sources->profiles) ) && (count($data_sources->profiles) > 0) ) : ?>
 					<div id="profiles" class="module">
 						<h2 class="module-header">Where You Can Find Me:</h2>
 						<div class="module-content links">
 							<?php echo profile_list(); ?>
 						</div>
+						<div class="clear"></div>
 					</div>
+					<?php endif; ?>
 					
 				</div>
 			</div>

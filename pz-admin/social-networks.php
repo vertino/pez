@@ -13,10 +13,11 @@ $social_networks = array(
 	'flickr'      => array('Flickr',        'http://flickr.com/photos/%s/'),
 	'friendfeed'  => array('FriendFeed',    'http://friendfeed.com/%s'),
 	'goodreads'   => array('GoodReads',     'http://www.goodreads.com/user/show/%s'),
-	'google'      => array('Google',        'http://code.google.com/u/%s/'),
+//	'google'      => array('Google',        'http://code.google.com/u/%s/'),
 	'hi5'         => array('Hi5',           'http://hi5.com/friend/profile/displayProfile.do?userid=%s'),
 	'jaiku'       => array('Jaiku',         'http://%s.jaiku.com/'),
 	'lastfm'      => array('Last.fm',       'http://www.last.fm/user/%s/'),
+	'libthing'    => array('LibraryThing',  'http://www.librarything.com/profile/%s'),
 	'linkedin'    => array('LinkedIn',      'http://www.linkedin.com/in/%s'),
 	'lj'          => array('LiveJournal',   'http://%s.livejournal.com/'),
 	'mog'         => array('MOG',           'http://mog.com/%s'),
@@ -37,7 +38,7 @@ $social_networks = array(
 	'twitter'     => array('Twitter',       'http://twitter.com/%s'),
 	'upcoming'    => array('Upcoming',      'http://upcoming.yahoo.com/user/%s'),
 	'vox'         => array('Vox',           'http://%s.vox.com/'),
-	'wordpress'   => array('WordPress.com', 'http://%s.wordpress.com/'),
+	'wordpress'   => array('WordPress',     'http://%s.wordpress.com/'),
 	'youtube'     => array('YouTube',       'http://www.youtube.com/user/%s'),
 	'zooomr'      => array('Zooomr',        'http://www.zooomr.com/photos/%s')
 );
