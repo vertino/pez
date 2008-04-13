@@ -65,6 +65,8 @@ class Profile extends Persistent
 	var $dob = array();
 	var $gender;
 	var $gravatar;
+	var $openid_server;
+	var $openid_delegate;
 	
 	function Profile( $filename = '' )
 	{

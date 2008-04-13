@@ -39,10 +39,9 @@
 			<div id="header">
 				<h1>Pez: Your online personal profile</h1>
 				<ul id="menu">
-					<li class="first"><a href="../" target="_blank">Pez</a></li>
+					<li class="first"><a href="../" rel="external">Pez</a></li>
 					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/profile.php') echo 'current'; ?>"><a href="profile.php">Profile</a></li>
 					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/web-sources.php') echo 'current'; ?>"><a href="web-sources.php">Web Data Sources</a></li>
-					<li class="<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/modules.php') echo 'current'; ?>"><a href="modules.php">Modules</a></li>
 					<li class="last<?php if ($_SERVER['SCRIPT_NAME'] == '/pez/pz-admin/settings.php') echo ' current'; ?>"><a href="settings.php">Settings</a></li>
 					<?php if ( is_auth() ) : ?><li><a href="login.php?logout=true">Logout</a></li><?php endif; ?>
 				</ul>

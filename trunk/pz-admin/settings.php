@@ -42,7 +42,7 @@ include_once('admin-header.php');
 				<div>
 					<label for="id_date_format">Date Format</label>
 					<input type="text" name="date_format" id="id_date_format" value="<?php echo $settings->date_format; ?>" />
-					<p><a href="http://codex.wordpress.org/Formatting_Date_and_Time">Documentation on date formatting.</a></p>
+					<p><a href="http://uk2.php.net/date" rel="external">Documentation on date formatting.</a></p>
 				</div>
 				<div><input type="submit" name="save" id="id_save_1" value="Save Changes" class="button" /></div>
 			</fieldset>

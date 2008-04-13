@@ -46,7 +46,7 @@ function link_list( $items, $delimiter = '~' )
 	{
 		$source = explode($delimiter, $key);
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $items_count) ? 'last ' : '' ) ) . 'item ' . get_domain($source[2]);
-		$html .= '<li><a class="' . $class . '" href="' . $item->get_permalink() . '">' . $item->get_title() . "</a></li>\n";
+		$html .= '<li class="' . $class . '"><a href="' . $item->get_permalink() . '"><span></span>' . $item->get_title() . "</a></li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -133,7 +133,7 @@ function profile_list( $deletable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $profile_count) ? 'last ' : '' ) ) . 'url item ' . $profile[0];
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . sprintf($profile[1][1], $profile[2]) . '">' . stripslashes( $profile[1][0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . sprintf($profile[1][1], $profile[2]) . '"><span></span>' . stripslashes( $profile[1][0] ) . '</a>' . $delete_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -171,7 +171,7 @@ function source_list( $show_ids = false, $deletable = false )
 		}
 		$id = ( ($show_ids) ? ' id="' . $idx . '"' : '');
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $source_count) ? 'last ' : '' ) ) . 'item ' . get_domain($source[1]);
-		$html .= '<li' . $id . '><a class="' . $class . '" rel="me" href="' . $source[1] . '">' . stripslashes( $source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li' . $id . ' class="' . $class . '"><a rel="me" href="' . $source[1] . '"><span></span>' . stripslashes( $source[0] ) . '</a>' . $delete_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -216,7 +216,7 @@ function blog_list( $deletable = false, $removable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $blogs_count) ? 'last ' : '' ) ) . 'item ' . get_domain($blog_source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $blog_source[1] . '">' . stripslashes( $blog_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $blog_source[1] . '"><span></span>' . stripslashes( $blog_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -261,7 +261,7 @@ function bookmark_list( $deletable = false, $removable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $bookmark_count) ? 'last ' : '' ) ) . 'item ' . get_domain($bookmark_source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $bookmark_source[1] . '">' . stripslashes( $bookmark_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $bookmark_source[1] . '"><span></span>' . stripslashes( $bookmark_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -306,7 +306,7 @@ function photo_list( $deletable = false, $removable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $photo_count) ? 'last ' : '' ) ) . 'item ' . get_domain($photo_source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $photo_source[1] . '">' . stripslashes( $photo_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $photo_source[1] . '"><span></span>' . stripslashes( $photo_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -351,7 +351,7 @@ function music_list( $deletable = false, $removable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $music_count) ? 'last ' : '' ) ) . 'item ' . get_domain($music_source[1]);
-		$html .= '<li><a class="' . $class . '" rel="me" href="' . $music_source[1] . '">' . stripslashes( $music_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $music_source[1] . '"><span></span>' . stripslashes( $music_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
