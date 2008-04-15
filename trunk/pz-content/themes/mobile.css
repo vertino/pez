@@ -5,7 +5,7 @@
 body {background-color:#fff;font-family:"Helvetica Neue",helvetica,arial,sans-serif;}
 p {text-align: justify;}
 
-h1 {font-weight:bold;font-size:2em;color:#DBDBDB; float:left;margin:2px 0px 0px;padding:0px 0px 0;}
+h1 {font-weight:bold;font-size:2em;color:#B1B1B1; float:left;margin:2px 0px 0px;padding:0px 0px 0;}
 h2 {font:normal 1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:bold;color:#B1B1B1;margin:0 -8px 10px;padding:0 0 0 5px;}
 h3 {letter-spacing:1px;margin-bottom:0;color:#7D775C;}
 
@@ -29,8 +29,8 @@ ul.accessibility {display:none;visibility:hidden;}
 	line-height:1.2em;
 	border-bottom:1px solid #C3C3B4;
 	color:#706C6C;
-	margin:02px 5px 0px;
-	padding:05px 5px 0px;
+	margin:02px 5px 5px;
+	padding:05px 5px 5px;
 	}
 	
 #about {}
