@@ -28,47 +28,62 @@ ul.accessibility {display:none;visibility:hidden;}
 	text-align:left;
 	font:0.9em Arial, sans-serif;
 	line-height:1.2em;
-        border-left: 1px solid #C3C3B4;
+	border-top: 1px solid #d4d4ce;
+	border-right: 1px solid #d4d4ce;
+       border-left: 1px solid #C3C3B4;
 	border-bottom:1px solid #C3C3B4;
 	color:#706C6C;
 	margin:05px 24px 05px;
 	padding:05px 15px 10px;
 	}
+
+.module-content.items {
+	margin:0 10px 3px;
+	padding:0 0 0;
+	}
+
+.module-content.photos {
+	margin:0 5px 0px;
+	padding:0 0 0;
+	}
 	
 #about {}
 #blogs {}
 #photos {}
+
+#photos img {
+	position: relative;
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+	border-right: 1px solid #e4e4e4;
+	border-left: 1px solid #C3C3B4;
+	border-bottom: 1px solid #C3C3B4;
+	margin: 0 3px 3px;
+	padding: 6px;
+	}
+
 #bookmarks {}
 #music {}
 #profiles {}
 #profiles li {float:left;padding-right:8px;}
 
-#links {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	}
-
-.photos {
-        margin:05px 7px 05px;
-        padding:0px 5px 10px;
-        }
-
-#profile-photo img {
-	display: block;
-	position: relative;
-	background-color: #fff;
-	border-left: 1px solid #C3C3B4;
-	border-bottom: 1px solid #C3C3B4;
-	padding: 6px;
-	}
-	
 #profile-photo {
 	float:right;
 	background: #fff;
 	width: 75px;
 	margin: 0px -17px 0px;
-        padding:0px 0 0px;
+       padding:0px 0 0px;
+	}
+
+#profile-photo img {
+	display: block;
+	position: relative;
+	background-color: #fff;
+	border-top: 1px solid #d4d4ce;
+	border-right: 1px solid #d4d4ce;
+	border-left: 1px solid #C3C3B4;
+	border-bottom: 1px solid #C3C3B4;
+	padding: 6px;
 	}
 
 #footer {
