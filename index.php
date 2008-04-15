@@ -86,7 +86,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 				</div>
 				<div id="panel">
 					
-					<?php if ( ( isset($data_sources->photos) ) && (count($data_sources->photos) > 0) ) : ?>
+<?php if ( ( isset($data_sources->photos) ) && (count($data_sources->photos) > 0) ) : ?>
 					<div id="photos" class="module">
 						<h2 class="module-header">What I'm Seeing:</h2>
 						<div class="module-content photos">
@@ -98,9 +98,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 							<?php echo flickr_photos($photos[0], MAX_ITEMS); ?>
 						</div>
 					</div>
-					<?php endif; ?>
+<?php endif; ?>
 					
-					<?php if ( ( isset($data_sources->bookmarks) ) && (count($data_sources->bookmarks) > 0) ) : ?>
+<?php if ( ( isset($data_sources->bookmarks) ) && (count($data_sources->bookmarks) > 0) ) : ?>
 					<div id="bookmarks" class="module">
 						<h2 class="module-header">What I'm Reading:</h2>
 						<div class="module-content links">
@@ -112,9 +112,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 							<?php echo link_list( combine_feeds($bookmarks, MAX_ITEMS * 2) ); ?>
 						</div>
 					</div>
-					<?php endif; ?>
+<?php endif; ?>
 					
-					<?php if ( ( isset($data_sources->music) ) && (count($data_sources->music) > 0) ) : ?>
+<?php if ( ( isset($data_sources->music) ) && (count($data_sources->music) > 0) ) : ?>
 					<div id="music" class="module">
 						<h2 class="module-header">What I'm Hearing:</h2>
 						<div class="module-content links">
@@ -126,9 +126,9 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 							<?php echo link_list( combine_feeds($music, MAX_ITEMS * 2) ) ?>
 						</div>
 					</div>
-					<?php endif; ?>
+<?php endif; ?>
 					
-					<?php if ( ( isset($data_sources->profiles) ) && (count($data_sources->profiles) > 0) ) : ?>
+<?php if ( ( isset($data_sources->profiles) ) && (count($data_sources->profiles) > 0) ) : ?>
 					<div id="profiles" class="module">
 						<h2 class="module-header">Where You Can Find Me:</h2>
 						<div class="module-content links">
@@ -136,12 +136,12 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 						</div>
 						<div class="clear"></div>
 					</div>
-					<?php endif; ?>
+<?php endif; ?>
 					
 				</div>
 			</div>
 			<div id="footer">
-				<p>Powered by <a href="http://code.google.com/p/pez/" title="Pez">Pez</a>.</p>
+				<p>Powered by <a href="http://pez.bogdind.com/" title="Pez">Pez</a>.</p>
 			</div>
 		</div>
 <?php unset($profile, $data_sources); ?>
