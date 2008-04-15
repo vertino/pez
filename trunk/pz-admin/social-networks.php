@@ -4,6 +4,7 @@ $social_networks = array(
 	'_43things'   => array('43Things',      'http://www.43things.com/person/%s'),
 	'bebo'        => array('Bebo',          'http://www.bebo.com/Profile.jsp?MemberId=%s'),
 	'catster'     => array('Catster',       'http://www.catster.com/cats/%s'),
+	'claimid'     => array('claimID',       'http://claimid.com/%s'),
 	'delicious'   => array('del.icio.us',   'http://del.icio.us/%s/'),
 	'digg'        => array('Digg',          'http://digg.com/users/%s/'),
 	'dodgeball'   => array('Dodgeball',     'http://www.dodgeball.com/user?uid=%s'),
