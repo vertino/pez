@@ -56,10 +56,10 @@ ul.accessibility {display:none;visibility:hidden;}
 	
 #profile-photo {
 	float:right;
-       background: #fff;
+    background: #fff;
 	width: 75px;
 	margin: 0px -17px 0px;
-       padding:0px 0 0px;
+    padding:0px 0 0px;
 	}
 
 #footer {

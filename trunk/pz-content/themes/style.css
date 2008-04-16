@@ -30,7 +30,7 @@ ul.accessibility {display:none;visibility:hidden;}
 	line-height:1.2em;
 	border-top: 1px solid #d4d4ce;
 	border-right: 1px solid #d4d4ce;
-       border-left: 1px solid #C3C3B4;
+    border-left: 1px solid #C3C3B4;
 	border-bottom:1px solid #C3C3B4;
 	color:#706C6C;
 	margin:05px 24px 05px;
@@ -72,7 +72,7 @@ ul.accessibility {display:none;visibility:hidden;}
 	background: #fff;
 	width: 75px;
 	margin: 0px -17px 0px;
-       padding:0px 0 0px;
+    padding:0px 0 0px;
 	}
 
 #profile-photo img {
@@ -93,7 +93,7 @@ ul.accessibility {display:none;visibility:hidden;}
 	clear:both;
 	margin:10px 0 10px;
 	padding:5px 0 0px;
-    	}
+    }
 
 blockquote {
 	margin : 10px 20px 10px;
