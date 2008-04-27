@@ -2,7 +2,7 @@
 /*fonts.css*/body{font:13px arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}table {font-size:inherit;font:100%;}select, input, textarea {font:99% arial,helvetica,clean,sans-serif;}pre, code {font:115% monospace;*font-size:100%;}body * {line-height:1.22em;}
 
 /* generic styles */
-body {background-color:red;font-family:"Helvetica Neue",helvetica,arial,sans-serif;}
+body {background-color:#DBDBDB;font-family:"Helvetica Neue",helvetica,arial,sans-serif;}
 p {text-align: justify;}
 
 h1 {font-weight:bold;font-size:3em;color:#fff; float:left;margin:20px 0px 0px;padding:0px 0px 0;}
