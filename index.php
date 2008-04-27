@@ -144,6 +144,17 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 				<p>Powered by <a href="http://pez.bogdind.com/" title="Pez">Pez</a>.</p>
 			</div>
 		</div>
+<?php if (!empty($google_analytics)) : ?>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("<?php echo $google_analytics; ?>");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<?php endif; ?>
 <?php unset($profile, $data_sources); ?>
 	</body>
 </html>

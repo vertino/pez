@@ -76,6 +76,44 @@ if ( isset($_POST['save']) )
 	unset($sources);
 }
 
+$html_head = <<<HTML
+		<script src="../pz-includes/js/jquery.dimensions.js"></script>
+		<script src="../pz-includes/js/ui.mouse.js"></script>
+		<script src="../pz-includes/js/ui.draggable.js"></script>
+		<script src="../pz-includes/js/ui.draggable.ext.js"></script>
+		<script src="../pz-includes/js/ui.droppable.js"></script>
+		<script src="../pz-includes/js/ui.droppable.ext.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$("#feed-sources>ul.sources>li").draggable({helper:'clone',cursor:'move'});
+				$("ul.sources>li>a").click( function(){return false;}).removeAttr("href");
+				$("a.remove").click( function(){ $(this).parent().fadeOut("slow", function(){ $(this).remove(); }); return false; });
+				$(".drop").droppable(
+				{
+					accept: "#feed-sources>ul.sources>li",
+					activeClass: 'droppable-active',
+					hoverClass: 'droppable-hover',
+					drop: function(ev, ui)
+					{
+						if ( !$(this).children("ul:contains('" + $(ui.draggable).text() + "')").length )
+						{
+							var block = $(ui.draggable).clone();
+							var removeLink = $("<a href='#' class='remove'>x</a>");
+							removeLink.click( function(){ $(this).parent().fadeOut("slow", function(){ $(this).remove(); }); return false; });
+							block.find("form").remove();
+							block.append( removeLink );
+							block.append( $("<input type='hidden' name='" + $(this).attr("id") + "[]' id='" + $(this).attr("id") + "-" + block.attr("id") + "' value='" + block.attr("id") + "' />") );
+							
+							$(this).children("ul").append( block );
+						}
+					}
+				});
+			});
+		</script>
+
+HTML;
+
 include_once('admin-header.php');
 ?>
 		<h2>Web Data Sources</h2>
@@ -101,42 +139,6 @@ include_once('admin-header.php');
 		</div>
 		
 		<div class="column">
-			<script src="../pz-includes/js/jquery.dimensions.js"></script>
-			<script src="../pz-includes/js/ui.mouse.js"></script>
-			<script src="../pz-includes/js/ui.draggable.js"></script>
-			<script src="../pz-includes/js/ui.draggable.ext.js"></script>
-			<script src="../pz-includes/js/ui.droppable.js"></script>
-			<script src="../pz-includes/js/ui.droppable.ext.js"></script>
-			<script type="text/javascript">
-				$(document).ready(function()
-				{
-					$("#feed-sources>ul.sources>li").draggable({helper:'clone',cursor:'move'});
-					$("ul.sources>li>a").click( function(){return false;}).removeAttr("href");
-					$("a.remove").click( function(){ $(this).parent().fadeOut("slow", function(){ $(this).remove(); }); return false; });
-					
-					$(".drop").droppable(
-					{
-						accept: "#feed-sources>ul.sources>li",
-						activeClass: 'droppable-active',
-						hoverClass: 'droppable-hover',
-						drop: function(ev, ui)
-						{
-							if ( !$(this).children("ul:contains('" + $(ui.draggable).text() + "')").length )
-							{
-								var block = $(ui.draggable).clone();
-								var removeLink = $("<a href='#' class='remove'>x</a>");
-								removeLink.click( function(){ $(this).parent().fadeOut("slow", function(){ $(this).remove(); }); return false; });
-								block.find("form").remove();
-								block.append( removeLink );
-								block.append( $("<input type='hidden' name='" + $(this).attr("id") + "[]' id='" + $(this).attr("id") + "-" + block.attr("id") + "' value='" + block.attr("id") + "' />") );
-								
-								$(this).children("ul").append( block );
-							}
-						}
-					});
-
-				});
-			</script>
 			<fieldset>
 				<legend>Add Feeds to Modules</legend>
 				

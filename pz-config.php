@@ -11,6 +11,7 @@ $settings = new Settings();
 define('CHARSET', $settings->charset);
 define('MAX_ITEMS', $settings->max_items);
 define('DATE_FORMAT', $settings->date_format);
+$google_analytics = $settings->google_analytics;
 unset($settings);
 
 $messages = array();

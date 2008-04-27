@@ -132,7 +132,7 @@ include_once('admin-header.php');
 			</div>
 			<div class="column">
 				<fieldset>
-					<legend>Misc</legend>
+					<legend>Avatar</legend>
 					<div>
 						<label for="id_photo_url">Profile Photo URL</label>
 						<input type="text" name="photo_url" id="id_photo_url" value="<?php echo $profile->photo_url; ?>" />

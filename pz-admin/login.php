@@ -27,6 +27,7 @@ $no_login = true;
 include_once('admin-header.php');
 ?>
 		<h2>Login</h2>
+		<?php do_messages(); ?>
 		
 		<form name="auth" id="id_auth" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#auth">
 			<fieldset>
