@@ -401,9 +401,10 @@ function is_auth()
 		die('The password has not been defined, unable to continue...');
 	
 	if ( ( (!empty($_COOKIE[PASS_COOKIE])) && ( $_COOKIE[PASS_COOKIE] != md5(md5(PASSWORD)) ) ) || (empty($_COOKIE[PASS_COOKIE])) )
-	{
 		return false;
-	}
+	
+	if ( isset($_GET['logout']) && $_GET['logout'] == 'true' )
+		return false;
 	
 	return true;
 }

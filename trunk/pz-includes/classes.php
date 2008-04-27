@@ -42,6 +42,7 @@ class Settings extends Persistent
 	var $charset = 'ISO-8859-1';
 	var $max_items = 5;
 	var $date_format = 'M j Y';
+	var $google_analytics;
 	
 	function Settings( $filename = '' )
 	{

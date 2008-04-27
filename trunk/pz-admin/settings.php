@@ -15,6 +15,9 @@ if ( isset($_POST['save']) )
 	if ( isset($_POST['date_format']) && $_POST['date_format'] != '')
 		$settings->date_format = $_POST['date_format'];
 	
+	if ( isset($_POST['google_analytics']) && $_POST['google_analytics'] != '')
+		$settings->google_analytics = $_POST['google_analytics'];
+	
 	$settings->save();
 	$messages[] = array('success', 'Your settings have been updated.');
 }
@@ -43,6 +46,11 @@ include_once('admin-header.php');
 					<label for="id_date_format">Date Format</label>
 					<input type="text" name="date_format" id="id_date_format" value="<?php echo $settings->date_format; ?>" />
 					<p><a href="http://uk2.php.net/date" rel="external">Documentation on date formatting.</a></p>
+				</div>
+				<div>
+					<label for="id_google_analytics">Google Analytics</label>
+					<input type="text" name="google_analytics" id="id_google_analytics" value="<?php echo $settings->google_analytics; ?>" />
+					<p>Set your Google Analytics ID here.</p>
 				</div>
 				<div><input type="submit" name="save" id="id_save_1" value="Save Changes" class="button" /></div>
 			</fieldset>
