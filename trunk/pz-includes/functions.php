@@ -369,8 +369,8 @@ function tag_cloud()
 	$sources = array();
 	foreach ($data_sources->sources as $source)
 		$sources[] = $source[1];
-		
-	foreach (combine_feeds($sources, MAX_ITEMS, '~') as $key => $item)
+	
+	foreach (combine_feeds($sources, MAX_ITEMS * 5, '~') as $key => $item)
 	{
 		$categories = $item->get_categories();
 		if (!empty($categories))
@@ -384,10 +384,11 @@ function tag_cloud()
 	unset($key, $item);
 	$tags = array_count_values( explode(' ', strtolower( implode(' ', $tags) ) ) );
 	arsort($tags);
+	$tags = array_slice($tags, 0, 50);
 	$low_count = end($tags);
 	$high_count = reset($tags);
 	$range = ($high_count - $low_count);
-	$fontspread = 150 - 75;
+	$fontspread = 200 - 75;
 	ksort($tags);
 	
 	foreach ($tags as $key => $val)
