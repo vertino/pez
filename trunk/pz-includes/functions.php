@@ -361,6 +361,44 @@ function music_list( $deletable = false, $removable = false )
 	return $html;
 }
 
+function tag_cloud()
+{
+	$data_sources = new WebDataSources();
+	
+	$tags = array();
+	$sources = array();
+	foreach ($data_sources->sources as $source)
+		$sources[] = $source[1];
+		
+	foreach (combine_feeds($sources, MAX_ITEMS, '~') as $key => $item)
+	{
+		$categories = $item->get_categories();
+		if (!empty($categories))
+		{
+			foreach ($categories as $category)
+			{
+				$tags[] = $category->term;
+			}
+		}
+	}
+	unset($key, $item);
+	$tags = array_count_values( explode(' ', strtolower( implode(' ', $tags) ) ) );
+	arsort($tags);
+	$low_count = end($tags);
+	$high_count = reset($tags);
+	$range = ($high_count - $low_count);
+	$fontspread = 150 - 75;
+	ksort($tags);
+	
+	foreach ($tags as $key => $val)
+	{
+		$font_size = 75 + ( $val / ( $range / $fontspread ) );
+		$cloud .= "<a href=\"http://technorati.com/tag/$key\" style=\"font-size:$font_size%;\" title=\"$key ($val)\" rel=\"external\">$key</a> ";
+	}
+	
+	return $cloud;
+}
+
 function get_domain( $url )
 {
 	$removeables = array('www.', 'ws.', 'api.', 'blog.', 'feeds.', '.com', '.net', '.org', '.gov', '.co', '.uk', '.');

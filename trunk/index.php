@@ -127,6 +127,11 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 						</div>
 					</div>
 <?php endif; ?>
+				
+					<div id="cloud" class="module" style="text-align:justify;">
+						<h2 class="module-header"><span>Tag Cloud</span></h2>
+						<?php echo tag_cloud(); ?>
+					</div>
 					
 <?php if ( ( isset($data_sources->profiles) ) && (count($data_sources->profiles) > 0) ) : ?>
 					<div id="profiles" class="module">
