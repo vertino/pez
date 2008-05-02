@@ -119,7 +119,7 @@ function profile_list( $deletable = false )
 	asort($profile->profiles);
 	
 	$i = 0;
-	$html = "<ul class=\"profiles vcard\">\n";
+	$html = "<ul class=\"profiles\">\n";
 	$profile_count = (sizeof($profile->profiles) - 1);
 	foreach($profile->profiles as $idx => $profile)
 	{
@@ -394,7 +394,7 @@ function tag_cloud()
 	foreach ($tags as $key => $val)
 	{
 		$font_size = 75 + ( $val / ( $range / $fontspread ) );
-		$cloud .= "<a href=\"http://technorati.com/tag/$key\" style=\"font-size:$font_size%;\" title=\"$key ($val)\" rel=\"external\">$key</a> ";
+		$cloud .= "<a href=\"http://technorati.com/tag/$key\" style=\"font-size:$font_size%;\" title=\"$key ($val)\" rel=\"tag external\">$key</a> ";
 	}
 	
 	return $cloud;
@@ -406,6 +406,8 @@ function get_domain( $url )
 	$host = parse_url($url, PHP_URL_HOST);
 	$host = str_replace($removeables, '', $host);
 	return $host;
+	
+	// LK - hmmm... what about links such as *.muxtape, or audioscrobbler = lastfm? (also all international TLDs?)
 }
 
 function do_messages( $echo = true )

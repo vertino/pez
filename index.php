@@ -31,7 +31,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 <?php if (!empty($profile->openid_delegate)) : ?>		<link rel="openid.delegate" href="<?php echo $profile->openid_delegate; ?>" />
 <?php endif; ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet(); ?>" />
-		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 		<script type="text/javascript"></script>
 	</head>
 	<body id="pez">
@@ -39,21 +39,11 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 			<ul class="accessibility">
 				<li><a href="#skip" title="Skip to content">Skip to content</a></li>
 			</ul>
-
-<!--
-<div id="hcard" class="vcard">
-	<img src="<?php echo $profile->photo_url; ?>" alt="photo of <?php echo $fullname; ?>" class="photo" />
-	<span class="fn"><?php echo $fullname; ?></span>
-	<div class="adr">
-		<span class="locality"><?php echo $profile->location; ?></span>
-		<span class="country-name"><?php echo $profile->country; ?></span>
-	</div>
-</div>
--->
-
+			
 			<div id="header" class="vcard">
 				<h1><span class="fn"><?php echo $fullname; ?></span></h1>
-				<div id="profile-photo"><img src="<?php echo $profile->photo_url; ?>" alt="[Profile photo for <?php echo $fullname; ?>]" title="Profile photo for <?php echo $fullname; ?>" /></div>
+				<div id="profile-photo"><img src="<?php echo $profile->photo_url; ?>" alt="[Profile photo for <?php echo $fullname; ?>]" title="Profile photo for <?php echo $fullname; ?>" class="photo" /></div>
+				
 			</div>
 			<div id="main">
 				<a name="skip"></a>
@@ -74,7 +64,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 						<div class="module-content items">
 <?php foreach (combine_feeds($blogs, MAX_ITEMS, '~') as $key => $item) : $feed_info = explode('~', $key); ?>
 							<div class="item">
-								<h3><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a>:</h3>
+								<h3><a href="<?php echo $item->get_permalink(); ?>" rel="bookmark"><?php echo $item->get_title(); ?></a>:</h3>
 								<blockquote>
 									<p>&ldquo;<?php echo trim_excerpt($item->get_description(), 50, '...'); ?>&rdquo; <a href="<?php echo $feed_info[2] ?>"><?php echo $feed_info[1]; ?></a> | <strong> <?php echo gmdate(DATE_FORMAT, $item->get_date('U')); ?></strong></p>
 								</blockquote>
