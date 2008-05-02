@@ -47,7 +47,7 @@ class Settings extends Persistent
 	function Settings( $filename = '' )
 	{
 		if ($filename == '')
-			$filename = ABSPATH . '/pz-admin/data/settings.php';
+			$filename = ABSPATH . '/admin/data/settings.php';
 		
 		$this->Persistent($filename);
 		$this->open();
@@ -72,7 +72,7 @@ class Profile extends Persistent
 	function Profile( $filename = '' )
 	{
 		if ($filename == '')
-			$filename = ABSPATH . '/pz-admin/data/profile.php';
+			$filename = ABSPATH . '/admin/data/profile.php';
 		
 		$this->Persistent($filename);
 		$this->open();
@@ -91,7 +91,7 @@ class WebDataSources extends Persistent
 	function WebDataSources( $filename = '' )
 	{
 		if ($filename == '')
-			$filename = ABSPATH . '/pz-admin/data/social-networks.php';
+			$filename = ABSPATH . '/admin/data/social-networks.php';
 		
 		$this->Persistent($filename);
 		$this->open();

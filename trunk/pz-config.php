@@ -3,9 +3,9 @@ define('ABSPATH', dirname(__FILE__));
 define('PASSWORD', 'password');
 define('PASS_COOKIE', 'pez_' . md5(PASSWORD));
 
-include_once(ABSPATH . '/pz-includes/classes.php');
-include_once(ABSPATH . '/pz-includes/functions.php');
-include_once(ABSPATH . '/pz-includes/version.php');
+include_once(ABSPATH . '/includes/classes.php');
+include_once(ABSPATH . '/includes/functions.php');
+include_once(ABSPATH . '/includes/version.php');
 
 $settings = new Settings();
 define('CHARSET', $settings->charset);

@@ -2,7 +2,7 @@
 if (!defined('ABSPATH'))
 	die('unable to continue...');
 
-include_once(ABSPATH . '/pz-includes/simplepie/simplepie.inc');
+include_once(ABSPATH . '/includes/simplepie/simplepie.inc');
 
 function combine_feeds( $feed_list, $max_items = 10, $delimiter = '~', $remove_html = true )
 {
@@ -15,7 +15,7 @@ function combine_feeds( $feed_list, $max_items = 10, $delimiter = '~', $remove_h
 	{
 		$feed = new SimplePie();
 		$feed->set_feed_url($url);
-		$feed->set_cache_location(ABSPATH . '/pz-content/cache');
+		$feed->set_cache_location(ABSPATH . '/cache');
 		//$feed->replace_headers(true);
 		if ($remove_html)
 			$feed->strip_htmltags(array('img', 'a', 'object', 'embed', 'param', 'iframe', 'p', 'br', 'div', 'span', 'li', 'ul'));
@@ -78,7 +78,7 @@ function flickr_photos( $feed_url, $max_items = 10 )
 	
 	$feed = new SimplePie();
 	$feed->set_feed_url($feed_url); 
-	$feed->set_cache_location(ABSPATH . '/pz-content/cache');
+	$feed->set_cache_location(ABSPATH . '/cache');
 	$feed->set_output_encoding('ISO-8859-1');
 	$feed->init();
 
@@ -465,9 +465,9 @@ function auth_redirect()
 function get_stylesheet()
 {
 	if ( is_mobile() )
-		return 'pz-content/themes/mobile.css';
+		return 'styles/mobile.css';
 	
-	return 'pz-content/themes/style.css';
+	return 'styles/default.css';
 }
 
 // Code borrowed from: Alex King's WordPress Mobile Edition 2.0 - http://alexking.org/projects/wordpress
