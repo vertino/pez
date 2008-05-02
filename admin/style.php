@@ -1,6 +1,6 @@
 <?php
 require_once('../pz-config.php');
-$css_file = '../pz-content/themes/style.css';
+$css_file = '../styles/default.css';
 
 // form processing
 if ( isset($_POST['save']) )
@@ -29,7 +29,7 @@ if ( isset($_POST['save']) )
 
 
 $html_head = <<<HTML
-		<script type="text/javascript" src="../pz-includes/codepress/codepress.js"></script>
+		<script type="text/javascript" src="../includes/codepress/codepress.js"></script>
 		<script type="text/javascript">
 			function submitform(frm)
 			{

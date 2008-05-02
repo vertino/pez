@@ -77,12 +77,12 @@ if ( isset($_POST['save']) )
 }
 
 $html_head = <<<HTML
-		<script src="../pz-includes/js/jquery.dimensions.js"></script>
-		<script src="../pz-includes/js/ui.mouse.js"></script>
-		<script src="../pz-includes/js/ui.draggable.js"></script>
-		<script src="../pz-includes/js/ui.draggable.ext.js"></script>
-		<script src="../pz-includes/js/ui.droppable.js"></script>
-		<script src="../pz-includes/js/ui.droppable.ext.js"></script>
+		<script src="../includes/js/jquery.dimensions.js"></script>
+		<script src="../includes/js/ui.mouse.js"></script>
+		<script src="../includes/js/ui.draggable.js"></script>
+		<script src="../includes/js/ui.draggable.ext.js"></script>
+		<script src="../includes/js/ui.droppable.js"></script>
+		<script src="../includes/js/ui.droppable.ext.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function()
 			{

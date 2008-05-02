@@ -1,7 +1,7 @@
 /* social networking styles */
 div.links ul {margin:10px 0 10px 10px;}
 div.links ul li {margin:5px 0 10px 0;}
-div.links ul li a span {background:transparent url(../../pz-includes/images/favicons.gif) no-repeat;padding:1px 5px 2px 16px;}
+div.links ul li a span {background:transparent url(../includes/images/favicons.gif) no-repeat;padding:1px 5px 2px 16px;}
 ._43things a span {background-position:0 -17px !important;}
 .bebo a span {background-position:0 -36px !important;}
 .catster a span {background-position:0 -55px !important;}
