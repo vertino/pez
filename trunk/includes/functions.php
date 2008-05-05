@@ -46,7 +46,7 @@ function link_list( $items, $delimiter = '~' )
 	{
 		$source = explode($delimiter, $key);
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $items_count) ? 'last ' : '' ) ) . 'item ' . get_domain($source[2]);
-		$html .= '<li class="' . $class . '"><a href="' . $item->get_permalink() . '"><span></span>' . $item->get_title() . "</a></li>\n";
+		$html .= '<li class="' . $class . '"><a href="' . $item->get_permalink() . '"><span>&nbsp;</span>' . $item->get_title() . "</a></li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -123,17 +123,10 @@ function profile_list( $deletable = false )
 	foreach($profile->profiles as $idx => $profile)
 	{
 		if ($deletable)
-		{
-			//$delete_me = '<form method="post" id="delete-network-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to delete your social network profile for ' . $profile[1][0] . '?\');">';
-			//$delete_me .= '<input type="hidden" name="form_name" value="delete_sn_form" />';
-			//$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
-			//$delete_me .= '<input type="submit" name="save" id="id_save_sn_' . $idx . '" value="X" class="remove" />';
-			//$delete_me .= '</form>';
-			$delete_me = "<input type=\"image\" name=\"delete_sn\" id=\"id_delete_sn_$idx\" value=\"$idx\" class=\"remove\" src=\"../includes/images/cross.png\" onclick=\"javascript:return confirm('Are you sure you want to delete your social network profile for {$profile[1][0]}?');\" />";
-		}
+			$delete_me = "<input type=\"image\" name=\"delete_sn\" id=\"id_delete_sn_$idx\" value=\"$idx\" class=\"remove\" src=\"../includes/images/cross.png\" onclick=\"javascript:return confirm('Are you sure you want to delete your social network profile for {$profile[1][0]}?');\" title=\"Click here to delete {$profile[1][0]}\" />";
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $profile_count) ? 'last ' : '' ) ) . 'url item ' . $profile[0];
-		$html .= '<li class="' . $class . '"><a rel="me" href="' . sprintf($profile[1][1], $profile[2]) . '"><span></span>' . stripslashes( $profile[1][0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me' . ( ($delete_me) ? ' external' : '' ) .'" href="' . sprintf($profile[1][1], $profile[2]) . '"><span>&nbsp;</span>' . stripslashes( $profile[1][0] ) . '</a>' . $delete_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -170,7 +163,7 @@ function source_list( $show_ids = false, $deletable = false )
 		}
 		$id = ( ($show_ids) ? ' id="' . $idx . '"' : '');
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $source_count) ? 'last ' : '' ) ) . 'item ' . get_domain($source[1]);
-		$html .= '<li' . $id . ' class="' . $class . '"><a rel="me" href="' . $source[1] . '"><span></span>' . stripslashes( $source[0] ) . '</a>' . $delete_me . "</li>\n";
+		$html .= '<li' . $id . ' class="' . $class . '"><a rel="me" href="' . $source[1] . '"><span>&nbsp;</span>' . stripslashes( $source[0] ) . '</a>' . $delete_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -215,7 +208,7 @@ function blog_list( $deletable = false, $removable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $blogs_count) ? 'last ' : '' ) ) . 'item ' . get_domain($blog_source[1]);
-		$html .= '<li class="' . $class . '"><a rel="me" href="' . $blog_source[1] . '"><span></span>' . stripslashes( $blog_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $blog_source[1] . '"><span>&nbsp;</span>' . stripslashes( $blog_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -260,7 +253,7 @@ function bookmark_list( $deletable = false, $removable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $bookmark_count) ? 'last ' : '' ) ) . 'item ' . get_domain($bookmark_source[1]);
-		$html .= '<li class="' . $class . '"><a rel="me" href="' . $bookmark_source[1] . '"><span></span>' . stripslashes( $bookmark_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $bookmark_source[1] . '"><span>&nbsp;</span>' . stripslashes( $bookmark_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -305,7 +298,7 @@ function photo_list( $deletable = false, $removable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $photo_count) ? 'last ' : '' ) ) . 'item ' . get_domain($photo_source[1]);
-		$html .= '<li class="' . $class . '"><a rel="me" href="' . $photo_source[1] . '"><span></span>' . stripslashes( $photo_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $photo_source[1] . '"><span>&nbsp;</span>' . stripslashes( $photo_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";
@@ -350,7 +343,7 @@ function music_list( $deletable = false, $removable = false )
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $music_count) ? 'last ' : '' ) ) . 'item ' . get_domain($music_source[1]);
-		$html .= '<li class="' . $class . '"><a rel="me" href="' . $music_source[1] . '"><span></span>' . stripslashes( $music_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $music_source[1] . '"><span>&nbsp;</span>' . stripslashes( $music_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
 		$i++;
 	}
 	$html .= "</ul>\n";

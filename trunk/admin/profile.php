@@ -119,15 +119,18 @@ include_once('admin-header.php');
 						<select name="display_name" id="id_display_name">
 							<option value="-1">Pick one...</option>
 							<?php
-								echo "<option>{$profile->first_name}</option>\n";
-								echo "<option>{$profile->first_name} {$profile->last_name}</option>\n";
-								echo "<option>{$profile->first_name[0]}. {$profile->last_name}</option>\n";
-								echo "<option>{$profile->first_name} {$profile->last_name[0]}.</option>\n";
+								$options = array();
+								$options[] = $profile->first_name;
+								$options[] = $profile->first_name . ' ' . $profile->last_name;
+								$options[] = $profile->first_name[0] . '. ' . $profile->last_name;
+								$options[] = $profile->first_name . ' ' . $profile->last_name[0] . '.';
 								if ($profile->middle_name != '')
 								{
-									echo "<option>{$profile->first_name} {$profile->middle_name} {$profile->last_name}</option>\n";
-									echo "<option>{$profile->first_name} {$profile->middle_name[0]}. {$profile->last_name}</option>\n";
+									$options[] = $profile->first_name . ' ' . $profile->middle_name . ' ' . $profile->last_name;
+									$options[] = $profile->first_name . ' ' . $profile->middle_name[0] . '. ' . $profile->last_name;
 								}
+								foreach ($options as $option)
+									echo '<option' . ( ($profile->display_name == $option) ? ' selected="true"' : '' ) . ">$option</option>\n";
 							?>
 						</select>
 					</div>
@@ -201,10 +204,10 @@ include_once('admin-header.php');
 					<div>
 						<label for="id_username">Username / User ID</label>
 						<input id="id_username" type="text" name="username" maxlength="32" value="<?php echo (isset($_POST['username'])) ? $_POST['username'] : ''; ?>" />
-						<p class="note">Bebo, Facebook? Use the number in the URL of your 'Profile' page (e.g. <?php $rand = rand(100000000, 999999999); echo $rand; ?>)</p>
+						<p>Bebo, Facebook? Use the number in the URL of your 'Profile' page (e.g. <?php $rand = rand(100000000, 999999999); echo $rand; ?>)</p>
 					</div>
 					<div><input type="submit" name="save" id="id_save_2" value="Add Social Network" class="button" /></div>
-					<div class="profiles">
+					<div class="networks">
 						<?php echo profile_list(true); ?>
 					</div>
 				</fieldset>
@@ -220,7 +223,7 @@ include_once('admin-header.php');
 						<p>Enter the URL of your profile image.</p>
 						<?php
 							if ( $profile->photo_url != '' )
-								echo '<img src="' . $profile->photo_url . '" alt="[profile photo]" title="Profile Photo" />';
+								echo '<div class="photo"><img src="' . $profile->photo_url . '" alt="[profile photo]" title="Profile Photo" /></div>';
 						?>
 					</div>
 <!--

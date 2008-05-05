@@ -1,10 +1,12 @@
+@import url(../styles/favicons.css);
+
 /*reset.css*/body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}ol,ul {list-style:none;}caption,th {text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
 /*fonts.css*/body{font:13px arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}table {font-size:inherit;font:100%;}select, input, textarea {font:99% arial,helvetica,clean,sans-serif;}pre, code {font:115% monospace;*font-size:100%;}body * {line-height:1.22em;}
 
 /* generic styles */
 body {background-color:#e5e5e5;color:#000;}
 a {color:#009;text-decoration:none;}
-a:hover {color:#909;text-decoration:underline;}
+a:hover {color:#1d64ad;text-decoration:underline;}
 
 .message-box span {cursor:pointer;display:block;background-color:#e5e5e5;border:solid 3px #ccc;font-weight:bold;margin:10px 50px;padding:10px 35px;text-align:left;}
 .message-box .success {border-color:#0c0;background:#e5ffe5 url(../includes/images/accept.png) no-repeat 10px 50%;color:#090;}
@@ -28,7 +30,7 @@ a:hover {color:#909;text-decoration:underline;}
 #main h2 {font-size:216%;}
 #main h3 {font-size:154%;margin:10px 0 5px 0;}
 
-.column {float:left;width:49%;}
+.column {float:left;width:48%;}
 fieldset {border:solid 1px #ccc;margin:10px 35px 10px 0;padding:10px 15px;}
 fieldset legend {font-family:Georgia,"Times New Roman",Times,serif;font-size:154%;}
 fieldset div {float:left;clear:both;margin:5px 0;width:100%;}
@@ -67,58 +69,9 @@ form#modules .drop-boxes {float:left;margin-top:0;}
 .drop ul li.item a span {background:transparent url(../includes/images/favicons.gif) no-repeat 0 0;padding:0 5px 2px 16px;}
 .drop ul li a.remove {float:right;display:block;background:#fff url(../includes/images/cross.png) no-repeat left 50%;margin-top:2px;width:16px;text-indent:-9999px;outline:none;}
 
-/*
-#data-sources {float:left;clear:both;width:100%;}
-#data-sources div {float:left;background-color:#e0e0e0;border:solid 1px #ccc;width:15%;margin-right:5px;padding:5px;}
-.sources li {float:left;clear:both;margin-bottom:5px;}
-.sources li a {float:left;}
-.sources li form {float:right;}
-.sources li form input.remove {background:#fff url(../pz-includes/images/cross.png) no-repeat 50% 50%;border:double 3px #ccc;cursor:pointer;height:24px;width:24px;text-indent:-9999px;}
-
-
-
-*/
-/* social networking styles */
-/* {background:transparent url(../pz-includes/images/favicons.gif) no-repeat;padding:4px 0 4px 25px; */
-option._43things, ._43things a span {background-position:0 -17px !important;}
-option.bebo, .bebo a span {background-position:0 -36px !important;}
-option.catster, .catster a span {background-position:0 -55px !important;}
-option.claimid, .claimid a span {background-position:0 -777px !important;}
-option.delicious, .delicious a span {background-position:0 -74px !important;}
-option.digg, .digg a span {background-position:0 -93px !important;}
-option.dodgeball, .dodgeball a span {background-position:0 -112px !important;}
-option.dogster, .dogster a span {background-position:0 -131px !important;}
-option.dopplr, .dopplr a span {background-position:0 -150px !important;}
-option.facebook, .facebook a span {background-position:0 -169px !important;}
-option.flickr, .flickr a span {background-position:0 -207px !important;}
-option.friendfeed, .friendfeed a span {background-position:0 -188px !important;}
-option.goodreads, .goodreads a span {background-position:0 -226px !important;}
-option.google, .google a span {background-position:0 -245px !important;}
-option.hi5, .hi5 a span {background-position:0 -264px !important;}
-option.jaiku, .jaiku a span {background-position:0 -283px !important;}
-option.audioscrobbler, .audioscrobbler a span,
-option.lastfm, .lastfm a span {background-position:0 -302px !important;}
-option.libthing, .libthing a span {background-position:0 -758px !important;}
-option.linkedin, .linkedin a span {background-position:0 -321px !important;}
-option.lj, .lj a span {background-position:0 -340px !important;}
-option.mog, .mog a span {background-position:0 -359px !important;}
-option.multiply, .multiply a span {background-position:0 -378px !important;}
-option.myspace, .myspace a span {background-position:0 -397px !important;}
-option.newsvine, .newsvine a span {background-position:0 -416px !important;}
-option.ning, .ning a span {background-position:0 -435px !important;}
-option.orkut, .orkut a span {background-position:0 -454px !important;}
-option.pandora, .pandora a span {background-position:0 -473px !important;}
-option.pownce, .pownce a span {background-position:0 -492px !important;}
-option.reddit, .reddit a span {background-position:0 -511px !important;}
-option.sonicliving, .sonicliving a span {background-position:0 -530px !important;}
-option.stumbleupon, .stumbleupon a span {background-position:0 -549px !important;}
-option.tabblo, .tabblo a span {background-position:0 -568px !important;}
-option.tagworld, .tagworld a span {background-position:0 -587px !important;}
-option.technorati, .technorati a span {background-position:0 -606px !important;}
-option.tribe, .tribe a span {background-position:0 -625px !important;}
-option.twitter, .twitter a span {background-position:0 -644px !important;}
-option.upcoming, .upcoming a span {background-position:0 -663px !important;}
-option.vox, .vox a span {background-position:0 -682px !important;}
-option.wordpress, .wordpress a span {background-position:0 -701px !important;}
-option.youtube, .youtube a span {background-position:0 -720px !important;}
-option.zooomr, .zooomr a span {background-position:0 -739px !important;}
+form#add-network .networks {margin:-150px 0 0 420px;border:solid 1px #ccc;padding:5px 3px;width:120px;}
+form#add-network .networks ul.profiles {}
+form#add-network .networks ul.profiles li {float:left;clear:both;margin:0 0 5px 0;width:100%;}
+form#add-network .networks ul.profiles li a {float:left;padding:2px;}
+form#add-network .networks ul.profiles li input.remove {float:right;}
+form .photo img {border:solid 1px #ccc;padding:3px;}
