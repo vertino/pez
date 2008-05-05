@@ -12,19 +12,6 @@ if ( isset($_POST['save']) )
 	{
 		switch ($_POST['form_name'])
 		{
-			case 'sn_form' :
-				$network_id = $_POST['network_id'];
-				$username = $_POST['username'];
-				$sources->profiles[] = array($network_id, $social_networks[$network_id], $username);
-				$messages[] = array('success', 'Successfully added ' . $social_networks[$network_id][0] . ' to your profile list.');
-				break;
-			
-			case 'delete_sn_form' :
-				$delete_id = $_POST['delete_id'];
-				$messages[] = array('success', $sources->profiles[$delete_id][1][0] . ' has been removed from your profile list.');
-				unset($sources->profiles[$delete_id]);
-				break;
-			
 			case 'wds_form' :
 				$source_title = $_POST['source_title'];
 				$source_url = $_POST['source_url'];
@@ -174,38 +161,6 @@ include_once('admin-header.php');
 				</form>
 					
 			</fieldset>
-		</div>
-		
-		<div class="column">
-			<form name="add-network" id="add-network" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#add-network" onsubmit="javascript:return (this.network_id.value != '-1');">
-				<fieldset>
-					<legend>Add a Social Network</legend>
-					<p>List your social network profiles here.</p>
-					<input type="hidden" name="form_name" id="id_form_name" value="sn_form" />
-					<div>
-						<label for="id_network_id">Select a social network</label>
-						<select name="network_id" id="id_network_id">
-							<option class="select" value="-1">Pick one...</option>
-						<?php foreach ($social_networks as $name => $site) : ?>
-							<option class="<?php echo $name; ?>" value="<?php echo $name; ?>"><?php echo $site[0]; ?></option>
-						<?php endforeach; ?>
-						</select>
-					</div>
-					<div>
-						<label for="id_username">Username / User ID</label>
-						<input id="id_username" type="text" name="username" maxlength="32" value="<?php echo (isset($_POST['username'])) ? $_POST['username'] : ''; ?>" />
-						<p class="note">Bebo, Facebook? Use the number in the URL of your 'Profile' page (e.g. <?php $rand = rand(100000000, 999999999); echo $rand; ?>)</p>
-					</div>
-					<div><input type="submit" name="save" id="id_save_1" value="Add Social Network" class="button" /></div>
-				</fieldset>
-			</form>
-		</div>
-		
-		<div class="column">
-			<div class="profiles">
-				<h4>profiles</h4>
-				<?php echo profile_list(true); ?>
-			</div>
 		</div>
 		
 <?php

@@ -111,7 +111,6 @@ function profile_list( $deletable = false )
 		return false;
 	
 	$profile = new WebDataSources();
-	//$profile->open();
 		
 	if (empty($profile->profiles))
 		return false;
@@ -125,11 +124,12 @@ function profile_list( $deletable = false )
 	{
 		if ($deletable)
 		{
-			$delete_me = '<form method="post" id="delete-network-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to delete your social network profile for ' . $profile[1][0] . '?\');">';
-			$delete_me .= '<input type="hidden" name="form_name" value="delete_sn_form" />';
-			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
-			$delete_me .= '<input type="submit" name="save" id="id_save_sn_' . $idx . '" value="X" class="remove" />';
-			$delete_me .= '</form>';
+			//$delete_me = '<form method="post" id="delete-network-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to delete your social network profile for ' . $profile[1][0] . '?\');">';
+			//$delete_me .= '<input type="hidden" name="form_name" value="delete_sn_form" />';
+			//$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
+			//$delete_me .= '<input type="submit" name="save" id="id_save_sn_' . $idx . '" value="X" class="remove" />';
+			//$delete_me .= '</form>';
+			$delete_me = "<input type=\"image\" name=\"delete_sn\" id=\"id_delete_sn_$idx\" value=\"$idx\" class=\"remove\" src=\"../includes/images/cross.png\" onclick=\"javascript:return confirm('Are you sure you want to delete your social network profile for {$profile[1][0]}?');\" />";
 		}
 		
 		$class = ( ($i == 0) ? 'first ' : ( ($i == $profile_count) ? 'last ' : '' ) ) . 'url item ' . $profile[0];
@@ -149,7 +149,6 @@ function source_list( $show_ids = false, $deletable = false )
 		return false;
 	
 	$profile = new WebDataSources();
-	//$profile->open();
 		
 	if (empty($profile->sources))
 		return false;
@@ -363,6 +362,8 @@ function music_list( $deletable = false, $removable = false )
 
 function tag_cloud()
 {
+	global $tagspace_url;
+	
 	$data_sources = new WebDataSources();
 	
 	$tags = array();
@@ -394,7 +395,7 @@ function tag_cloud()
 	foreach ($tags as $key => $val)
 	{
 		$font_size = 75 + ( $val / ( $range / $fontspread ) );
-		$cloud .= "<a href=\"http://technorati.com/tag/$key\" style=\"font-size:$font_size%;\" title=\"$key ($val)\" rel=\"tag external\">$key</a> ";
+		$cloud .= '<a href="' . sprintf($tagspace_url, $key) . "\" style=\"font-size:$font_size%;\" title=\"$key ($val)\" rel=\"tag external\">$key</a> ";
 	}
 	
 	return $cloud;
@@ -473,47 +474,13 @@ function get_stylesheet()
 // Code borrowed from: Alex King's WordPress Mobile Edition 2.0 - http://alexking.org/projects/wordpress
 function is_mobile()
 {
-	if ( !isset($_SERVER["HTTP_USER_AGENT"]) )
+	if ( !isset($_SERVER['HTTP_USER_AGENT']) )
 		return false;
 	
-	$mobile_browsers = array(
-		'2.0 MMP'
-		,'240x320'
-		,'AvantGo'
-		,'BlackBerry'
-		,'Blazer'
-		,'Cellphone'
-		,'Danger'
-		,'DoCoMo'
-		,'Elaine/3.0'
-		,'EudoraWeb'
-		,'hiptop'
-		,'iPhone'
-		,'iPod'
-		,'MMEF20'
-		,'MOT-V'
-		,'NetFront'
-		,'Newt'
-		,'Nokia'
-		,'Opera Mini'
-		,'Palm'
-		,'portalmmm'
-		,'Proxinet'
-		,'ProxiNet'
-		,'SHARP-TQ-GX10'
-		,'Small'
-		,'SonyEricsson'
-		,'Symbian OS'
-		,'SymbianOS'
-		,'TS21i-10'
-		,'UP.Browser'
-		,'UP.Link'
-		,'Windows CE'
-		,'WinWAP'
-	);
+	$mobile_browsers = array('2.0 MMP', '240x320', 'AvantGo', 'BlackBerry', 'Blazer', 'Cellphone', 'Danger', 'DoCoMo', 'Elaine/3.0', 'EudoraWeb', 'hiptop', 'iPhone', 'iPod', 'MMEF20', 'MOT-V', 'NetFront', 'Newt', 'Nokia', 'Opera Mini', 'Palm', 'portalmmm', 'Proxinet', 'ProxiNet', 'SHARP-TQ-GX10', 'Small', 'SonyEricsson', 'Symbian OS', 'SymbianOS', 'TS21i-10', 'UP.Browser', 'UP.Link', 'Windows CE', 'WinWAP');
 	foreach ($mobile_browsers as $browser)
 	{
-		if (strstr($_SERVER["HTTP_USER_AGENT"], $browser))
+		if (strstr($_SERVER['HTTP_USER_AGENT'], $browser))
 			return true;
 	}
 	
