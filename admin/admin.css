@@ -37,6 +37,7 @@ fieldset div input,
 fieldset div select,
 fieldset div textarea {float:left;font-family:Georgia,"Times New Roman",Times,serif;width:250px;padding:2px 3px;}
 fieldset div select,
+fieldset div input.remove,
 fieldset div input.button,
 fieldset div input.checkbox {width:auto;}
 fieldset div textarea {height:100px;padding:5px 3px;}
@@ -54,7 +55,6 @@ select#id_network_id option.select {background:none;}
 #feed-sources ul li.item a span {background:transparent url(../includes/images/favicons.gif) no-repeat 0 0;padding:0 5px 2px 16px;}
 #feed-sources ul li form {float:right;}
 #feed-sources ul li form input.remove {background:#fff url(../includes/images/cross.png) no-repeat 50% 50%;border:0;cursor:pointer;height:16px;width:16px;text-indent:-9999px;}
-
 
 form#modules {float:left;margin-left:1%;width:68%;}
 form#modules .drop-boxes {float:left;margin-top:0;}

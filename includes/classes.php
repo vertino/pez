@@ -39,10 +39,11 @@ class Persistent
 
 class Settings extends Persistent
 {
-	var $charset = 'ISO-8859-1';
+	var $charset = 'UTF-8';
 	var $max_items = 5;
 	var $date_format = 'M j Y';
 	var $google_analytics;
+	var $tagspace_url = 'http://technorati.com/tag/%s';
 	
 	function Settings( $filename = '' )
 	{
@@ -59,6 +60,7 @@ class Profile extends Persistent
 	var $first_name;
 	var $middle_name;
 	var $last_name;
+	var $display_name;
 	var $blurb;
 	var $location;
 	var $country;

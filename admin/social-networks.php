@@ -45,6 +45,22 @@ $social_networks = array(
 );
 ksort($social_networks);
 
+$tagspaces = array(
+// name              => url
+'A9'                 => 'http://a9.com/%s',
+'Amazon.com'         => 'http://www.amazon.com/tag/%s',
+'del.icio.us'        => 'http://del.icio.us/tag/%s',
+'eBay'               => 'http://search.ebay.com/%s',
+'Flickr'             => 'http://www.flickr.com/photos/tags/%s',
+'HashTags (Twitter)' => 'http://hashtags.org/tag/%s',
+'Journa-list'        => 'http://www.journa-list.com/tags/%s',
+'Ma.gnolia'          => 'http://ma.gnolia.com/tags/%s',
+'Technorati'         => 'http://technorati.com/tag/%s',
+'Wikipedia'          => 'http://en.wikipedia.org/wiki/%s',
+'WordPress.com'      => 'http://wordpress.com/tag/%s'
+);
+ksort($tagspaces);
+
 $countries = array(
 	'ad' => 'Andorra, Principality of',
 	'ae' => 'United Arab Emirates',
