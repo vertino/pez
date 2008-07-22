@@ -43,7 +43,6 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 			<div id="header" class="vcard">
 				<h1><span class="fn"><?php echo $fullname; ?></span></h1>
 				<div id="profile-photo"><img src="<?php echo $profile->photo_url; ?>" alt="[Profile photo for <?php echo $fullname; ?>]" title="Profile photo for <?php echo $fullname; ?>" class="photo" /></div>
-				
 			</div>
 			<div id="main">
 				<a name="skip"></a>
@@ -118,11 +117,6 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 					</div>
 <?php endif; ?>
 				
-					<div id="cloud" class="module" style="text-align:justify;">
-						<h2 class="module-header"><span>Tag Cloud</span></h2>
-						<?php echo tag_cloud(); ?>
-					</div>
-					
 <?php if ( ( isset($data_sources->profiles) ) && (count($data_sources->profiles) > 0) ) : ?>
 					<div id="profiles" class="module">
 						<h2 class="module-header">Where You Can Find Me:</h2>

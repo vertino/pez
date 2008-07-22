@@ -45,6 +45,23 @@ $social_networks = array(
 );
 ksort($social_networks);
 
+$popular_feeds = array(
+//	name        => array(   array(title, url-format) )
+	'delicious' => array(
+							array('del.icio.us Recent Bookmarks', 'http://feeds.delicious.com/rss/%s')
+						),
+	'digg'      => array(
+							array('Digg Recent History', 'http://digg.com/users/%s/history.rss')
+						),
+	'flickr'    => array(
+							array('Flickr Recent Photos', 'http://api.flickr.com/services/feeds/photos_public.gne?id=%s'),
+							array('Flickr Recent Friend\'s Photos', 'http://api.flickr.com/services/feeds/photos_friends.gne?user_id=%s&friends=0&display_all=0&format=rss')
+						),
+	'lastfm'    => array(
+							array('Last.fm Recent Tracks', 'http://ws.audioscrobbler.com/1.0/user/%s/recenttracks.rss')
+						)
+);
+
 $tagspaces = array(
 //	name                 => url
 	'A9'                 => 'http://a9.com/%s',
