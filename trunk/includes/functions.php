@@ -446,7 +446,6 @@ function is_auth()
 
 function auth_redirect()
 {
-	
 	// Checks if a user is logged in, if not redirects them to the login page
 	if ( !is_auth() )
 	{

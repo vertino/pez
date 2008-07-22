@@ -47,8 +47,8 @@ fieldset div textarea.editor {font-family:"Courier New",courier,monospace;height
 fieldset div p {float:left;clear:both;font-size:85%;margin:5px 0;width:400px;}
 
 /* web-data-source styles */
-select#id_network_id option {background:transparent url(../includes/images/favicons.gif) no-repeat;margin:5px 0 0 0;padding:1px 0 2px 22px;}
-select#id_network_id option.select {background:none;}
+select#id_network_id option, select#id_service_id option {background:transparent url(../includes/images/favicons.gif) no-repeat;margin:5px 0 0 0;padding:1px 0 2px 22px;}
+select#id_network_id option.select, select#id_service_id option.select {background:none;}
 
 #feed-sources {float:left;width:30%;}
 #feed-sources ul {list-style:none;margin:0;padding:0;}

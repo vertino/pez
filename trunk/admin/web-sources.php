@@ -28,6 +28,12 @@ if ( isset($_POST['save']) )
 				$messages[] = array('success', $sources->sources[$delete_id][0] . ' has been removed from your data-source list.');
 				unset($sources->sources[$delete_id]);
 				break;
+			
+			case 'pdf_form' :
+				$service = explode('@', $_POST['service_id']);
+				$sources->sources[] = array($service[0], $service[1]);
+				$messages[] = array('success', 'Successfully added ' . $service[0] . ' to your data-source list.');
+				break;
 				
 			case 'modules_form' :
 				if ( isset($_POST['blogs']) && is_array($_POST['blogs']) )
@@ -120,7 +126,36 @@ include_once('admin-header.php');
 						<label for="id_source_url">URL</label>
 						<input id="id_source_url" type="text" name="source_url" maxlength="255" value="" />
 					</div>
-					<div><input type="submit" name="save" id="id_save_2" value="Add Web Data Source" class="button" /></div>
+					<div><input type="submit" name="save" id="id_save_1" value="Add Web Data Source" class="button" /></div>
+				</fieldset>
+			</form>
+			<form name="add-predefined" id="add-predefined" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#add-predefined">
+				<fieldset>
+					<legend>Add a Feed from your Profiles</legend>
+					<p>If you are not familar with Atom and RSS feeds, then you can select a predefined feed from a social network service that you already use.</p>
+					<input type="hidden" name="form_name" id="id_form_name" value="pdf_form" />
+					<div>
+						<label for="id_network_id">Select a social network</label>
+						<?php
+							$data_sources = new WebDataSources();
+							$profiles = array();
+							foreach ( $data_sources->profiles as $idx => $profile)
+							{
+								if (!empty($popular_feeds[$profile[0]]))
+								{
+									foreach($popular_feeds[$profile[0]] as $feed)
+										$profiles[] = array($profile[0], $feed[0], sprintf($feed[1], $profile[2]));
+								}
+							}
+						?>
+						<select name="service_id" id="id_service_id">
+							<option class="select" value="-1">Pick one...</option>
+						<?php foreach ( $profiles as $feed) : ?>
+								<option class="<?php echo $feed[0]; ?>" value="<?php echo $feed[1] . '@' . $feed[2]; ?>"><?php echo $feed[1]; ?></option>
+						<?php endforeach; ?>
+						</select>
+					</div>
+					<div><input type="submit" name="save" id="id_save_2" value="Add Feed" class="button" /></div>
 				</fieldset>
 			</form>
 		</div>
@@ -155,7 +190,7 @@ include_once('admin-header.php');
 					
 					<div>
 						<input type="hidden" name="form_name" id="id_form_name" value="modules_form" />
-						<input type="submit" name="save" id="save" value="Save" />
+						<input type="submit" name="save" id="id_save_3" value="Save" />
 					</div>
 					
 				</form>
