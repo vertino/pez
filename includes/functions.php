@@ -89,15 +89,15 @@ function flickr_photos( $feed_url, $max_items = 10 )
 		foreach ($feed->get_items(0, $max_items) as $item)
 		{
 			$image = $item->get_description();
-			$image = substr($image, strpos($image, '<img') + 10);
-			$image = trim(substr($image, 0, strpos($image, "\" width")));
-			$healthy = array("%3A", "%2F");
-			$yummy = array(":", "/");
+			$image = substr($image, strpos($image, 'src=') + 4); // '<img') + 10);
+			$image = trim(substr($image, 0, strpos($image, '.jpg') + 4)); // , "\" width")));
+			$healthy = array("%3A", "%2F", '"', 'm.jpg');
+			$yummy = array(":", "/", '', 's.jpg');
 			$image = str_replace($healthy, $yummy, $image);
-			$imagetn = str_replace('m.jpg', 's.jpg', $image);
+			//$image = str_replace('m.jpg', 's.jpg', $image);
 			
 			$html .= '<a href="' . $item->get_permalink() . '">';
-			$html .= '<img src="' . $imagetn . '" alt="[flickr photo: ' . $item->get_title() . ']" title="' . $item->get_title() . '" />';
+			$html .= '<img src="' . $image . '" alt="[flickr photo: ' . $item->get_title() . ']" title="' . $item->get_title() . '" />';
 			$html .= "</a>\n";
 		}
 	}
