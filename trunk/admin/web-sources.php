@@ -55,6 +55,11 @@ if ( isset($_POST['save']) )
 					$sources->music = $_POST['music'];
 				else
 					unset($sources->music);
+					
+				if ( isset($_POST['location']) && is_array($_POST['location']) )
+					$sources->location = $_POST['location'];
+				else
+					unset($sources->location);
 				
 				$messages[] = array('success', 'Your content modules have been updated.');
 				break;
@@ -185,6 +190,10 @@ include_once('admin-header.php');
 						<div id="music" class="drop">
 							<h3>Music Module</h3>
 							<?php echo music_list(false, true); ?>
+						</div>
+						<div id="location" class="drop">
+							<h3>Location Module</h3>
+							<?php echo location_list(false, true); ?>
 						</div>
 					</div>
 					

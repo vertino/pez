@@ -12,6 +12,7 @@ $social_networks = array(
 	'dopplr'       => array('Dopplr',        'http://www.dopplr.com/traveller/%s'),
 	'facebook'     => array('Facebook',      'http://www.facebook.com/profile.php?id=%s'),
 	'flickr'       => array('Flickr',        'http://flickr.com/photos/%s/'),
+	'foursquare'   => array('foursquare',    'http://www.foursquare.com/user/%s'),
 	'friendfeed'   => array('FriendFeed',    'http://friendfeed.com/%s'),
 	'goodreads'    => array('GoodReads',     'http://www.goodreads.com/user/show/%s'),
 //	'google'       => array('Google',        'http://code.google.com/u/%s/'),

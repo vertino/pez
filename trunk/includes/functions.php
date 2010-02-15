@@ -394,6 +394,51 @@ function tag_cloud()
 	return $cloud;
 }
 
+function location_list( $deletable = false, $removable = false )
+{
+	if (!class_exists('WebDataSources'))
+		return false;
+	
+	$sources = new WebDataSources();
+		
+	if ( (empty($sources->location)) && (!$removable) )
+		return false;
+	
+	asort($sources->location);
+	
+	$i = 0;
+	$html = "<ul class=\"location\">\n";
+	$location_count = (sizeof($sources->location) - 1);
+	
+	foreach($sources->location as $idx => $location)
+	{
+		$location_source = $sources->sources[$location];
+		if ($deletable)
+		{
+			$delete_me = '<form method="post" id="delete-location-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to remove ' . $bookmark_source[0] . ' from your location module?\');">';
+			$delete_me .= '<input type="hidden" name="form_name" value="delete_loc_form" />';
+			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
+			$delete_me .= '<input type="submit" name="save" id="id_save_loc_' . $idx . '" value="X" class="remove" />';
+			$delete_me .= '</form>';
+		}
+		
+		if ($removable)
+		{
+			$remove_me = '<a href="#" class="remove">x</a>';
+			$remove_me .= '<input type="hidden" name="location[]" id="location-' . array_search($location_source, $sources->sources) . '" value="' . array_search($location_source, $sources->sources) . '" />';
+		}
+		
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $location_count) ? 'last ' : '' ) ) . 'item ' . get_domain($location_source[1]);
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $location_source[1] . '"><span>&nbsp;</span>' . stripslashes( $location_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$i++;
+	}
+	$html .= "</ul>\n";
+	
+	unset($sources, $source, $location_count, $i);
+	
+	return $html;
+}
+
 function get_domain( $url )
 {
 	$removeables = array('www.', 'ws.', 'api.', 'blog.', 'feeds.', '.com', '.net', '.org', '.gov', '.co', '.uk', '.');
