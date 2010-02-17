@@ -119,18 +119,23 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 
 <?php if ( ( isset($data_sources->location) ) && (count($data_sources->location) > 0) ) : ?>
 					<div id="location" class="module">
-						<h2 class="module-header">Where I've Been:</h2>
-						<div class="module-content links">
-							<?php
-								$location = array();
-								foreach ( array_intersect_key( $data_sources->sources, array_flip($data_sources->location) ) as $source )
-									$location[] = $source[1];
-							?>
-							<?php echo link_list( combine_feeds($location, MAX_ITEMS * 2) ) ?>
+						<h2 class="module-header">Where I've Been Checking In:</h2>
+<?php
+							$location = array();
+							foreach ( array_intersect_key( $data_sources->sources, array_flip($data_sources->location) ) as $source )
+								$location[] = $source[1];
+						?>
+						<div class="module-content items">
+<?php foreach (combine_feeds($location, MAX_ITEMS, '~') as $key => $item) : $feed_info = explode('~', $key); ?>
+							<div class="item">
+								@ <a href="<?php echo $item->get_permalink(); ?>" rel="bookmark"><?php echo $item->get_title(); ?></a> <strong> <?php echo gmdate('j M Y | h:i  a T', $item->get_date('U')); ?></strong></p>
+							</div>
+<?php endforeach; unset($key, $item); ?>
+							</div>
 						</div>
 					</div>
 <?php endif; ?>
-				
+
 <?php if ( ( isset($data_sources->profiles) ) && (count($data_sources->profiles) > 0) ) : ?>
 					<div id="profiles" class="module">
 						<h2 class="module-header">Where You Can Find Me:</h2>

@@ -415,7 +415,7 @@ function location_list( $deletable = false, $removable = false )
 		$location_source = $sources->sources[$location];
 		if ($deletable)
 		{
-			$delete_me = '<form method="post" id="delete-location-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to remove ' . $bookmark_source[0] . ' from your location module?\');">';
+			$delete_me = '<form method="post" id="delete-location-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to remove ' . $location_source[0] . ' from your location module?\');">';
 			$delete_me .= '<input type="hidden" name="form_name" value="delete_loc_form" />';
 			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
 			$delete_me .= '<input type="submit" name="save" id="id_save_loc_' . $idx . '" value="X" class="remove" />';
