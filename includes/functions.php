@@ -439,6 +439,51 @@ function location_list( $deletable = false, $removable = false )
 	return $html;
 }
 
+function tweet_list( $deletable = false, $removable = false )
+{
+	if (!class_exists('WebDataSources'))
+		return false;
+	
+	$sources = new WebDataSources();
+		
+	if ( (empty($sources->tweet)) && (!$removable) )
+		return false;
+	
+	asort($sources->tweet);
+	
+	$i = 0;
+	$html = "<ul class=\"tweet\">\n";
+	$tweet_count = (sizeof($sources->tweet) - 1);
+	
+	foreach($sources->tweet as $idx => $tweet)
+	{
+		$tweet_source = $sources->sources[$tweet];
+		if ($deletable)
+		{
+			$delete_me = '<form method="post" id="delete-tweet-' . $idx . '" onsubmit="javascript:return confirm(\'Are you sure you want to remove ' . $bookmark_source[0] . ' from your tweet module?\');">';
+			$delete_me .= '<input type="hidden" name="form_name" value="delete_twt_form" />';
+			$delete_me .= '<input type="hidden" name="delete_id" value="' . $idx . '"/>';
+			$delete_me .= '<input type="submit" name="save" id="id_save_twt_' . $idx . '" value="X" class="remove" />';
+			$delete_me .= '</form>';
+		}
+		
+		if ($removable)
+		{
+			$remove_me = '<a href="#" class="remove">x</a>';
+			$remove_me .= '<input type="hidden" name="tweet[]" id="tweet-' . array_search($tweet_source, $sources->sources) . '" value="' . array_search($tweet_source, $sources->sources) . '" />';
+		}
+		
+		$class = ( ($i == 0) ? 'first ' : ( ($i == $tweet_count) ? 'last ' : '' ) ) . 'item ' . get_domain($tweet_source[1]);
+		$html .= '<li class="' . $class . '"><a rel="me" href="' . $tweet_source[1] . '"><span>&nbsp;</span>' . stripslashes( $tweet_source[0] ) . '</a>' . $delete_me . $remove_me . "</li>\n";
+		$i++;
+	}
+	$html .= "</ul>\n";
+	
+	unset($sources, $source, $tweet_count, $i);
+	
+	return $html;
+}
+
 function get_domain( $url )
 {
 	$removeables = array('www.', 'ws.', 'api.', 'blog.', 'feeds.', '.com', '.net', '.org', '.gov', '.co', '.uk', '.');

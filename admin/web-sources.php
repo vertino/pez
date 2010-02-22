@@ -40,6 +40,11 @@ if ( isset($_POST['save']) )
 					$sources->blogs = $_POST['blogs'];
 				else
 					unset($sources->blogs);
+					
+					if ( isset($_POST['fbstatus']) && is_array($_POST['fbstatus']) )
+					$sources->fbstatus = $_POST['fbstatus'];
+				else
+					unset($sources->fbstatus);
 				
 				if ( isset($_POST['bookmarks']) && is_array($_POST['bookmarks']) )
 					$sources->bookmarks = $_POST['bookmarks'];
@@ -60,6 +65,11 @@ if ( isset($_POST['save']) )
 					$sources->location = $_POST['location'];
 				else
 					unset($sources->location);
+					
+				if ( isset($_POST['tweet']) && is_array($_POST['tweet']) )
+					$sources->tweet = $_POST['tweet'];
+				else
+					unset($sources->tweet);
 				
 				$messages[] = array('success', 'Your content modules have been updated.');
 				break;
@@ -178,6 +188,10 @@ include_once('admin-header.php');
 						<div id="blogs" class="drop">
 							<h3>Blogs Module</h3>
 							<?php echo blog_list(false, true); ?>
+						</div>
+						<div id="tweet" class="drop">
+							<h3>Status Module</h3>
+							<?php echo tweet_list(false, true); ?>
 						</div>
 						<div id="bookmarks" class="drop">
 							<h3>Bookmarks Module</h3>

@@ -51,6 +51,7 @@ ul.accessibility {display:none;visibility:hidden;}
 	
 #about {}
 #blogs {}
+#status {}
 #photos {}
 
 #photos img {
@@ -66,6 +67,7 @@ ul.accessibility {display:none;visibility:hidden;}
 
 #bookmarks {}
 #music {}
+#location {}
 #profiles {}
 #profiles li {float:left;padding-right:8px;}
 
@@ -98,9 +100,8 @@ ul.accessibility {display:none;visibility:hidden;}
     }
 
 blockquote {
-	margin : 10px 20px 10px;
+	margin : 05px 05px 05px;
 	padding : 0 0 10px;
 	background-color : transparent;
-	line-height : 14px;
-	border-bottom: 1px solid #EBEBE4;
+	line-height : 05px;
 	}
