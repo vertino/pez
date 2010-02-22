@@ -47,12 +47,13 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 			<div id="main">
 				<a name="skip"></a>
 				<div id="content">
-					
+									
 					<div id="about" class="module">
 						<h2 class="module-header"><span>What I'm About</span></h2>
 						<p class="module-content"><span><?php echo $profile->blurb; ?></span></p>
 					</div>
-					
+						
+<?php if ( ( isset($data_sources->blogs) ) && (count($data_sources->blogs) > 0) ) : ?>					
 					<div id="blogs" class="module">
 						<h2 class="module-header"><span>What I'm Saying:</span></h2>
 						<?php
@@ -71,13 +72,25 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 <?php endforeach; unset($key, $item); ?>
 						</div>
 					</div>
-					
-				</div>
-				<div id="panel">
+<?php endif; ?>				
+				
+<?php if ( ( isset($data_sources->tweet) ) && (count($data_sources->tweet) > 0) ) : ?>
+					<div id="tweet" class="module">
+						<h2 class="module-header"><span>What My Status Updates Are:</span></h2>
+						<div class="module-content links">
+							<?php
+								$music = array();
+								foreach ( array_intersect_key( $data_sources->sources, array_flip($data_sources->tweet) ) as $source )
+									$tweet[] = $source[1];
+							?>
+							<?php echo link_list( combine_feeds($tweet, MAX_ITEMS * 2) ) ?>
+						</div>
+					</div>
+<?php endif; ?>
 					
 <?php if ( ( isset($data_sources->photos) ) && (count($data_sources->photos) > 0) ) : ?>
 					<div id="photos" class="module">
-						<h2 class="module-header">What I'm Seeing:</h2>
+						<h2 class="module-header"><span>What I'm Seeing:</span></h2>
 						<div class="module-content photos">
 							<?php
 								$photos = array();
@@ -91,7 +104,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 					
 <?php if ( ( isset($data_sources->bookmarks) ) && (count($data_sources->bookmarks) > 0) ) : ?>
 					<div id="bookmarks" class="module">
-						<h2 class="module-header">What I'm Reading:</h2>
+						<h2 class="module-header"><span>What I'm Reading:</span></h2>
 						<div class="module-content links">
 							<?php
 								$bookmarks = array();
@@ -105,7 +118,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 					
 <?php if ( ( isset($data_sources->music) ) && (count($data_sources->music) > 0) ) : ?>
 					<div id="music" class="module">
-						<h2 class="module-header">What I'm Hearing:</h2>
+						<h2 class="module-header"><span>What I'm Hearing:</span></h2>
 						<div class="module-content links">
 							<?php
 								$music = array();
@@ -119,7 +132,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 
 <?php if ( ( isset($data_sources->location) ) && (count($data_sources->location) > 0) ) : ?>
 					<div id="location" class="module">
-						<h2 class="module-header">Where I've Been Checking In:</h2>
+						<h2 class="module-header"><span>Where I've Been Checking In:</span></h2>
 <?php
 							$location = array();
 							foreach ( array_intersect_key( $data_sources->sources, array_flip($data_sources->location) ) as $source )
@@ -128,7 +141,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 						<div class="module-content items">
 <?php foreach (combine_feeds($location, MAX_ITEMS, '~') as $key => $item) : $feed_info = explode('~', $key); ?>
 							<div class="item">
-								@ <a href="<?php echo $item->get_permalink(); ?>" rel="bookmark"><?php echo $item->get_title(); ?></a> <strong> <?php echo gmdate('j M Y | h:i  a T', $item->get_date('U')); ?></strong></p>
+								<p>@ <a href="<?php echo $item->get_permalink(); ?>" rel="bookmark"><?php echo $item->get_title(); ?></a> <strong> <?php echo gmdate('j M Y | h:i  a T', $item->get_date('U')); ?></strong></p>
 							</div>
 <?php endforeach; unset($key, $item); ?>
 							</div>
@@ -138,7 +151,7 @@ $fullname = $profile->first_name . ' ' . $profile->last_name;
 
 <?php if ( ( isset($data_sources->profiles) ) && (count($data_sources->profiles) > 0) ) : ?>
 					<div id="profiles" class="module">
-						<h2 class="module-header">Where You Can Find Me:</h2>
+						<h2 class="module-header"><span>Where You Can Find Me:</span></h2>
 						<div class="module-content links">
 							<?php echo profile_list(); ?>
 						</div>

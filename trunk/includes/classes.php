@@ -90,6 +90,7 @@ class WebDataSources extends Persistent
 	var $photos = array();
 	var $music = array();
 	var $location = array();
+	var $tweet = array();
 	
 	function WebDataSources( $filename = '' )
 	{
