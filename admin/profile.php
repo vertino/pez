@@ -30,7 +30,7 @@ if ( isset($_POST['form_name']) && $_POST['form_name'] != '' )
 				$profile->display_name = $_POST['display_name'];
 			
 			if ( isset($_POST['blurb']) && $_POST['blurb'] != '')
-				$profile->blurb = $_POST['blurb'];
+				$profile->blurb = stripslashes($_POST['blurb']);
 			
 			if ( isset($_POST['location']) && $_POST['location'] != '')
 				$profile->location = $_POST['location'];
@@ -137,7 +137,7 @@ include_once('admin-header.php');
 				<?php endif; ?>
 					<div>
 						<label for="id_blurb">Short blurb about me</label>
-						<textarea name="blurb" id="id_blurb" rows="3" cols="40"><?php echo $profile->blurb; ?></textarea>
+						<textarea name="blurb" id="id_blurb" rows="3" cols="40"><?php echo stripslashes($profile->blurb); ?></textarea>
 						<p>This is a paragraph sized description of you that appears at the top of the page. Remember to use paragraph and break tags.</p>
 					</div>
 					<div>
